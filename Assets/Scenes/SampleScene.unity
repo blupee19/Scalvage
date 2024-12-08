@@ -150,6 +150,7 @@ Transform:
   m_Children:
   - {fileID: 1369287815}
   - {fileID: 560967098}
+  - {fileID: 1901597597}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -649,7 +650,6 @@ MonoBehaviour:
   move: Move
   jump: Jump
   sprint: Sprint
-  facingRight: 1
   moveSpeed: 10
   dashSpeed: 50
   dashDuration: 0.4
@@ -1058,12 +1058,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901597595}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8005, y: -2.56, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.4558525, y: -7.3969946, z: -1.3321292}
   m_LocalScale: {x: 69.37448, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 391465755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1901597598
 BoxCollider2D:
@@ -1203,6 +1203,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
-  - {fileID: 1901597597}
   - {fileID: 1325848739}
   - {fileID: 391465755}
