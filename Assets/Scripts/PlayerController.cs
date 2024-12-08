@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float jumpForce = 10f;
     [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private float airDrag = 0.5f;
-    private float jumpBufferCounter;
+    private bool canJump = true;
+    public bool jumpPressed = false;
     private float coyoteTimeCounter;
     public LayerMask Ground;
     public Transform groundCheck;
@@ -68,8 +69,19 @@ public class PlayerController : MonoBehaviour
         moveAction.performed += context => MoveInput = context.ReadValue<Vector2>();
         moveAction.canceled += context => MoveInput = Vector2.zero;
 
-        jumpAction.performed += context => JumpInput = true;
-        jumpAction.canceled += context => JumpInput = false;
+        jumpAction.performed += context =>
+        {
+            if (canJump)
+            { 
+                JumpInput = true;
+                canJump = false; // Prevents further jumps until button release
+            }
+        };
+        jumpAction.canceled += context =>
+        {
+            JumpInput = false;
+            canJump = true; // Allows jumping again after button release
+        };
 
         sprintAction.performed += context => SprintInput = true;
         sprintAction.canceled += context => SprintInput = false;
@@ -110,14 +122,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
-        if (JumpInput)
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else 
-        {
-            jumpBufferCounter -= Time.fixedDeltaTime;
-        }
 
         if (IsGrounded())
         {
@@ -129,11 +133,13 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter -= Time.fixedDeltaTime;
         }
 
-        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
+
+        if (coyoteTimeCounter > 0f && JumpInput)
         {
             rb.linearVelocityY = jumpForce;
             coyoteTimeCounter = 0f;
-            jumpBufferCounter = 0f;
+            // Reset JumpInput to prevent immediate consecutive jumps
+            JumpInput = false;
         }
 
         if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)

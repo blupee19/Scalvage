@@ -303,9 +303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06305ca4c21c1a64abacac1ca1df1dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1325848739}
+  playerController: {fileID: 1325848741}
   offset: {x: 0, y: 0, z: -10}
   smoothTime: 0.3
+  camOffset: 2
 --- !u!1 &560967095
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,19 +666,21 @@ MonoBehaviour:
   move: Move
   jump: Jump
   sprint: Sprint
+  facingRight: 1
   moveSpeed: 10
   dashSpeed: 50
   dashDuration: 0.4
   dashCooldown: 1
   coyoteTime: 0.2
   jumpForce: 15
-  jumpBufferTime: 0.2
+  jumpBufferTime: 0.0001
   airDrag: 1
+  jumpPressed: 0
   Ground:
     serializedVersion: 2
     m_Bits: 64
   groundCheck: {fileID: 807753437}
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.15
 --- !u!50 &1325848742
 Rigidbody2D:
   serializedVersion: 5
@@ -908,7 +911,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 9389ff5914b2494498c0c835a095d327, type: 2}
+  m_Material: {fileID: 6200000, guid: 4d7eba28a10d9064085e4d5ca5819306, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
