@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private string sprint = "Sprint";
 
     [Header("Movement")]
-    private bool facingRight = true;
+    public bool facingRight = true;
     public float moveSpeed = 5f;
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
