@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private string sprint = "Sprint";
 
     [Header("Movement")]
+    public bool facingRight = true;
     public float moveSpeed = 5f;
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
@@ -99,6 +100,11 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, Ground);
     }
 
+    private void Update()
+    {
+        Flip();
+    }
+
     private void FixedUpdate()
     {
         moveDirection = moveAction.ReadValue<Vector2>();
@@ -144,10 +150,14 @@ public class PlayerController : MonoBehaviour
         lastDashTime = Time.time;
 
         dashDirection = new Vector2(moveDirection.x, moveDirection.y).normalized;
-        
-        if (dashDirection == Vector2.zero)
+
+        if (facingRight)
         {
             dashDirection = Vector2.right;
+        }
+        else 
+        {
+            dashDirection = Vector2.left;
         }
         StartCoroutine(DashCoroutine());
 
@@ -159,6 +169,21 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashDuration);
         rb.linearVelocityX = 0f;
         isDashing = false;
+    }
+
+    void Flip()
+    {
+        if (moveDirection.x < 0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            facingRight = false;
+        }
+
+        if (moveDirection.x > 0f)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            facingRight = true;
+        }
     }
 
 }
