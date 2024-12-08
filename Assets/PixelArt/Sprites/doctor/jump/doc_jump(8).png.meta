@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 38d05d8b9c37d6e4f9d6ef7a20d1d872
+guid: f84fb02092c1b3047805a92d9b64348a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8998667810197996635
-    second: pixil-frame-0(2)_0
+      213: 6713489866530094122
+    second: doc_jump(8)_0
+  - first:
+      213: 1174631629734708803
+    second: doc_jump(8)_1
+  - first:
+      213: -7125635727185963260
+    second: doc_jump(8)_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +132,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pixil-frame-0(2)_0
+      name: doc_jump(8)_0
       rect:
         serializedVersion: 2
-        x: 164
-        y: 76
-        width: 33
-        height: 224
+        x: 55
+        y: 36
+        width: 123
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +147,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b54089642b0b1ec70800000000000000
-      internalID: 8998667810197996635
+      spriteID: a2cf5b9c67b1b2d50800000000000000
+      internalID: 6713489866530094122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doc_jump(8)_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 52
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34686486e312d4010800000000000000
+      internalID: 1174631629734708803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: doc_jump(8)_2
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 45
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4079f323f08ac1d90800000000000000
+      internalID: -7125635727185963260
       vertices: []
       indices: 
       edges: []
@@ -160,8 +210,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      pixil-frame-0(2)_0: 8998667810197996635
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
