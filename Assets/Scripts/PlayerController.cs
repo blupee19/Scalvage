@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 5f;
-    public float jumpForce = 10f;
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
@@ -34,6 +33,16 @@ public class PlayerController : MonoBehaviour
     private float dashTime;
     private float lastDashTime;
     private Vector2 dashDirection;
+
+    [Header("Jumping")]
+    [SerializeField] private float coyoteTime = 0.2f;
+    [SerializeField] public float jumpForce = 10f;
+    [SerializeField] private float jumpBufferTime = 0.2f;
+    private float jumpBufferCounter;
+    private float coyoteTimeCounter;
+    public LayerMask Ground;
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.1f;
 
 
     public Vector2 MoveInput { get; private set; }
@@ -86,29 +95,37 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        if (rb.linearVelocityY == 0)
-        {
-            return true;
-        }
-        else 
-        {
-            return false;
-        }
-
-    }
-
-    void Update()
-    {
-        moveDirection = moveAction.ReadValue<Vector2>();
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, Ground);
     }
 
     private void FixedUpdate()
     {
+        moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
-        if (JumpInput && IsGrounded())
+        if (JumpInput)
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else 
+        {
+            jumpBufferCounter -= Time.fixedDeltaTime;
+        }
+
+        if (IsGrounded())
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.fixedDeltaTime;
+        }
+
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
         {
             rb.linearVelocityY = jumpForce;
+            coyoteTimeCounter = 0f;
+            jumpBufferCounter = 0f;
         }
 
         if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
