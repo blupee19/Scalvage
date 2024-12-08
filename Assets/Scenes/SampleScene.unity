@@ -655,6 +655,7 @@ MonoBehaviour:
   coyoteTime: 0.2
   jumpForce: 15
   jumpBufferTime: 0.2
+  airDrag: 1
   Ground:
     serializedVersion: 2
     m_Bits: 64
