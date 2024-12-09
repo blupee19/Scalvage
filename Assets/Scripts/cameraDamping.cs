@@ -42,7 +42,7 @@ public class CameraFollow : MonoBehaviour
     {
         // Lock the cursor to the center of the screen and make it invisible
         Cursor.lockState = CursorLockMode.Confined; // Confines the cursor within the game window
-        Cursor.visible = false; // Hides the cursor
+        
     }
 
     private void Update()
