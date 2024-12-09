@@ -1,29 +1,34 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using System.Runtime.CompilerServices;
 
 public class CameraFollow : MonoBehaviour
 {
+
+    public PlayerController playerController;
 
     [Header("Input Actions and Asset")]
     public InputActionAsset playerControls;
     private InputAction aimAction;
     public Vector2 AimInput {  get; private set; }
 
-    [Header("Offset")]
-    public PlayerController playerController;// The player's transform
-    public Vector3 offset = new Vector3(0, 0, -10); // Offset to keep the camera at a distance
-    public float smoothTime = 0.3f; // Time for damping effect
-    public float camOffset = 2f;
+    [Header("Camera Settings")]
+    public float smoothSpeed = 5f; // Smoothing speed for camera movement
+    public float cameraZDepth = -10f; // Fixed Z position of the camera in 2D
+    private Camera mainCamera;
 
-
-    private Vector3 velocity = Vector3.zero; // Internal variable for smooth damping
 
     private void Awake()
     {
         aimAction = playerControls.FindActionMap("Player").FindAction("Look");
-        RegisterInputActions();
+        aimAction.performed += context => AimInput = context.ReadValue<Vector2>();
+        aimAction.canceled += context => AimInput = Vector2.zero;
+
+        if (mainCamera == null)
+            mainCamera = Camera.main;
     }
 
     private void OnEnable()
@@ -35,36 +40,20 @@ public class CameraFollow : MonoBehaviour
         aimAction.Disable();
     }
 
-    void RegisterInputActions()
+    private void LateUpdate()
     {
-        aimAction.performed += context => AimInput = context.ReadValue<Vector2>();
-        aimAction.canceled += context => AimInput = Vector2.zero;
-    }
+
+        float mouseX = AimInput.x;
+        float mouseY = AimInput.y;
+
+        transform.position = new Vector3(mouseX, mouseY, -10);
 
 
-    void LateUpdate()
-    { 
-
-
-
-
-        if (playerController != null)
-        {
-            // Adjust the offset based on the player's facing direction
-            float directionOffset = playerController.facingRight ? camOffset : -camOffset;
-
-            // Update offset while keeping y and z consistent
-            Vector3 dynamicOffset = new Vector3(directionOffset, offset.y, offset.z);
-
-            // Add movement-based offset (MoveInput affects x and y)
-            Vector2 moveDir = playerController.MoveInput;
-            dynamicOffset += new Vector3(moveDir.x * camOffset, moveDir.y * camOffset, 0);
-
-            // Calculate the target position
-            Vector3 targetPosition = playerController.transform.position + dynamicOffset;
-
-            // Smoothly move the camera towards the target position
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        }
+        //Vector3 camPosition = mainCamera.transform.position;
+        //camPosition.z = cameraZDepth;
+        //Vector3 playerPos = playerController.transform.position;
+        //camPosition.x = Mathf.Clamp(playerPos.x, playerPos.x - 10, playerPos.x + 10);
+        //camPosition.y = Mathf.Clamp(playerPos.y, playerPos.y - 10, playerPos.y + 10);
+        //camPosition = AimInput;
     }
 }
