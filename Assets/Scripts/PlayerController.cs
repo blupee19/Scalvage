@@ -121,13 +121,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        AnimationCalls();
         moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
-        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
+       
 
         if (IsGrounded())
         {
+            //animator.SetBool("isJumping", false);
             coyoteTimeCounter = coyoteTime;
         }
         else
@@ -139,12 +141,17 @@ public class PlayerController : MonoBehaviour
 
         if (coyoteTimeCounter > 0f && JumpInput)
         {
-            rb.linearVelocityY = jumpForce;
+            rb.linearVelocityY = jumpForce;                    
+            rb.linearVelocityY = jumpForce;                    
             coyoteTimeCounter = 0f;
+
+            //animator.SetBool("isJumping", true);
+            
             // Reset JumpInput to prevent immediate consecutive jumps
             JumpInput = false;
                         
         }
+
 
         if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
         {
@@ -193,6 +200,20 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = false;
             facingRight = true;
+        }
+    }
+
+    void AnimationCalls()
+    {
+        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
+
+        if (IsGrounded())
+        {
+            animator.SetBool("isJumping", false);
+        }
+        if (coyoteTimeCounter > 0f && JumpInput)
+        {
+            animator.SetBool("isJumping", true);
         }
     }
 
