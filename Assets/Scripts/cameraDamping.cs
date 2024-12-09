@@ -1,26 +1,23 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using System.Runtime.CompilerServices;
 
 public class CameraFollow : MonoBehaviour
 {
-
-    public PlayerController playerController;
+    public PlayerController playerController; // Reference to the player
 
     [Header("Input Actions and Asset")]
     public InputActionAsset playerControls;
     private InputAction aimAction;
-    public Vector2 AimInput {  get; private set; }
+    public Vector2 AimInput { get; private set; }
 
     [Header("Camera Settings")]
     public float smoothSpeed = 5f; // Smoothing speed for camera movement
     public float cameraZDepth = -10f; // Fixed Z position of the camera in 2D
     private Camera mainCamera;
-    public float mouseSensivity = 0.2f;
+    public float mouseSensitivity = 0.2f;
 
+    [Header("Clamp Settings")]
+    public float clampRadius = 5f; // Maximum distance camera can move from the player
 
     private void Awake()
     {
@@ -36,22 +33,61 @@ public class CameraFollow : MonoBehaviour
     {
         aimAction.Enable();
     }
+
     private void OnDisable()
     {
         aimAction.Disable();
     }
+    private void Start()
+    {
+        // Lock the cursor to the center of the screen and make it invisible
+        Cursor.lockState = CursorLockMode.Confined; // Confines the cursor within the game window
+        Cursor.visible = false; // Hides the cursor
+    }
+
+    private void Update()
+    {
+        // Optional: Allow the player to toggle the cursor lock state for debugging or menus
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Unlock and show the cursor
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if (Input.GetMouseButtonDown(0)) // Lock again on left-click
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = false;
+        }
+    }
 
     private void LateUpdate()
     {
+        if (playerController == null || mainCamera == null) return;
 
-        mainCamera.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10);
+        // Calculate mouse movement offset
+        float mouseX = AimInput.x * mouseSensitivity;
+        float mouseY = AimInput.y * mouseSensitivity;
 
-        float mouseX = AimInput.x * mouseSensivity;
-        float mouseY = AimInput.y * mouseSensivity;
+        // Get the camera's current position
+        Vector3 cameraPosition = mainCamera.transform.position;
 
-        mainCamera.transform.Translate(mouseX, mouseY, 0);
+        // Calculate the new camera position based on mouse input
+        Vector3 newCameraPosition = cameraPosition + new Vector3(mouseX, mouseY, 0);
 
+        // Clamp the camera's position to within a certain radius of the player
+        Vector3 playerPosition = playerController.transform.position;
+        Vector3 offset = newCameraPosition - playerPosition;
 
+        if (offset.magnitude > clampRadius)
+        {
+            // Adjust position to stay within the clamp radius
+            offset = offset.normalized * clampRadius;
+            newCameraPosition = playerPosition + offset;
+        }
 
+        // Update the camera's position
+        newCameraPosition.z = cameraZDepth; // Ensure consistent Z depth
+        mainCamera.transform.position = Vector3.Lerp(cameraPosition, newCameraPosition, smoothSpeed * Time.deltaTime);
     }
 }
