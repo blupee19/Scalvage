@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public InputActionAsset playerControls;
+    public Animator animator;
 
     [Header("Action Map Name")]
     private string actionMapName = "Player";
@@ -122,6 +123,7 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
+        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
 
         if (IsGrounded())
         {
