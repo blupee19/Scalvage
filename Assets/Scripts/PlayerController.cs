@@ -183,7 +183,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         rb.linearVelocityX = dashDirection.x * dashSpeed * moveSpeed;
+        animator.SetBool("isDashing", true);
         yield return new WaitForSeconds(dashDuration);
+        animator.SetBool("isDashing", false);
         rb.linearVelocityX = 0f;
         isDashing = false;
     }
@@ -215,14 +217,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isJumping", true);
         }
-        if(SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
-        {
-            animator.SetBool("isDashing", true);
-        }
-        else
-        {
-            animator.SetBool("isDashing", false);
-        }
+        //if(SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        //{
+        //    animator.SetBool("isDashing", true);
+        //}
+        //else
+        //{
+        //    animator.SetBool("isDashing", false);
+        //}
         
     }
 
