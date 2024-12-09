@@ -390,6 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06305ca4c21c1a64abacac1ca1df1dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   playerController: {fileID: 1325848741}
   offset: {x: 0, y: 0, z: -10}
   smoothTime: 0.3
