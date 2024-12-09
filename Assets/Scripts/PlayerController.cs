@@ -111,11 +111,13 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, Ground);
+        
     }
 
     private void Update()
     {
         Flip();
+        
     }
 
     private void FixedUpdate()
@@ -140,8 +142,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocityY = jumpForce;
             coyoteTimeCounter = 0f;
+            animator.SetBool("isGrounded", true);
             // Reset JumpInput to prevent immediate consecutive jumps
             JumpInput = false;
+                        
         }
 
         if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
@@ -193,5 +197,7 @@ public class PlayerController : MonoBehaviour
             facingRight = true;
         }
     }
+
+   
 
 }
