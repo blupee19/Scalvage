@@ -19,6 +19,7 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 5f; // Smoothing speed for camera movement
     public float cameraZDepth = -10f; // Fixed Z position of the camera in 2D
     private Camera mainCamera;
+    public float mouseSensivity = 0.2f;
 
 
     private void Awake()
@@ -43,17 +44,14 @@ public class CameraFollow : MonoBehaviour
     private void LateUpdate()
     {
 
-        float mouseX = AimInput.x;
-        float mouseY = AimInput.y;
+        mainCamera.transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, -10);
 
-        transform.position = new Vector3(mouseX, mouseY, -10);
+        float mouseX = AimInput.x * mouseSensivity;
+        float mouseY = AimInput.y * mouseSensivity;
+
+        mainCamera.transform.Translate(mouseX, mouseY, 0);
 
 
-        //Vector3 camPosition = mainCamera.transform.position;
-        //camPosition.z = cameraZDepth;
-        //Vector3 playerPos = playerController.transform.position;
-        //camPosition.x = Mathf.Clamp(playerPos.x, playerPos.x - 10, playerPos.x + 10);
-        //camPosition.y = Mathf.Clamp(playerPos.y, playerPos.y - 10, playerPos.y + 10);
-        //camPosition = AimInput;
+
     }
 }

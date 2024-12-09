@@ -394,6 +394,7 @@ MonoBehaviour:
   playerControls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   smoothSpeed: 5
   cameraZDepth: -10
+  mouseSensivity: 0.09
 --- !u!1 &560967095
 GameObject:
   m_ObjectHideFlags: 0
