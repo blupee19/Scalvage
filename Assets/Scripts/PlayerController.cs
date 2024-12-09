@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
     [Header("Jumping")]
     [SerializeField] private float coyoteTime = 0.2f;
     [SerializeField] public float jumpForce = 10f;
-    [SerializeField] private float jumpBufferTime = 0.2f;
     [SerializeField] private float airDrag = 0.5f;
     private bool canJump = true;
     public bool jumpPressed = false;
@@ -142,7 +141,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocityY = jumpForce;
             coyoteTimeCounter = 0f;
-            animator.SetBool("isGrounded", true);
             // Reset JumpInput to prevent immediate consecutive jumps
             JumpInput = false;
                         
@@ -197,7 +195,5 @@ public class PlayerController : MonoBehaviour
             facingRight = true;
         }
     }
-
-   
 
 }

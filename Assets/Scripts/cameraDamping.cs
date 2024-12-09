@@ -13,29 +13,6 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        //if (playerController != null)
-        //{
-        //    // Calculate the target position
-        //    Vector3 targetPosition = playerController.transform.position + offset;
-
-        //    // Smoothly move the camera towards the target position
-        //    transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        //}
-
-        //if (playerController.facingRight)
-        //{
-        //    offset.x += 2;
-        //}
-        //else
-        //{
-        //    offset.x -= 2;
-        //}
-
-        //Vector2 moveDir = playerController.MoveInput;
-
-        //Vector3 newOffset = new Vector3(moveDir.x, moveDir.y, 0);
-
-        //offset = new Vector3(moveDir.x * camOffset,  moveDir.y * camOffset, -10);
 
         if (playerController != null)
         {
