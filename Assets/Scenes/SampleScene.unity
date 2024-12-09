@@ -669,7 +669,7 @@ MonoBehaviour:
   sprint: Sprint
   facingRight: 1
   moveSpeed: 10
-  dashSpeed: 50
+  dashSpeed: 30
   dashDuration: 0.4
   dashCooldown: 1
   coyoteTime: 0.2
