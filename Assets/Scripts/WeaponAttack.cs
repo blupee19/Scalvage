@@ -26,6 +26,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         closeAttackAction.Disable();
     }
 
+    private void Start()
+    {
+        weapon.GetComponent<EdgeCollider2D>().enabled = false;
+    }
+
     private void Update()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
