@@ -73,7 +73,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 cameraPosition = mainCamera.transform.position;
 
         // Calculate the new camera position based on mouse input
-        Vector3 newCameraPosition = cameraPosition + new Vector3(mouseX, mouseY, 0);
+        Vector3 newCameraPosition = cameraPosition + new Vector3(mouseX, mouseY + 2, 0);
 
         // Clamp the camera's position to within a certain radius of the player
         Vector3 playerPosition = playerController.transform.position;

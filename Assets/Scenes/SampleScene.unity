@@ -305,7 +305,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -353,7 +353,7 @@ MonoBehaviour:
   smoothSpeed: 5
   cameraZDepth: -10
   mouseSensitivity: 0.2
-  clampRadius: 5
+  clampRadius: 10
 --- !u!1 &560967095
 GameObject:
   m_ObjectHideFlags: 0
