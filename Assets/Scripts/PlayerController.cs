@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    private bool isDashing = false;
+    private bool isDashing;
     private float dashTime;
     private float lastDashTime;
     private Vector2 dashDirection;
@@ -183,9 +183,9 @@ public class PlayerController : MonoBehaviour
     private IEnumerator DashCoroutine()
     {
         rb.linearVelocityX = dashDirection.x * dashSpeed * moveSpeed;
-        animator.SetBool("isDashing", true);
+          
         yield return new WaitForSeconds(dashDuration);
-        animator.SetBool("isDashing", false);
+        
         rb.linearVelocityX = 0f;
         isDashing = false;
     }
@@ -207,15 +207,25 @@ public class PlayerController : MonoBehaviour
 
     void AnimationCalls()
     {
-        animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
 
-        if (IsGrounded())
+        if (isDashing)
         {
+            animator.SetBool("isDashing", true);
             animator.SetBool("isJumping", false);
         }
-        if (coyoteTimeCounter > 0f && JumpInput)
+        else
         {
-            animator.SetBool("isJumping", true);
+            animator.SetBool("isDashing", false);
+            animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
+
+            if (IsGrounded())
+            {
+                animator.SetBool("isJumping", false);
+            }
+            if (coyoteTimeCounter > 0f && JumpInput)
+            {
+                animator.SetBool("isJumping", true);
+            }
         }
         //if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
         //{
