@@ -353,7 +353,7 @@ MonoBehaviour:
   smoothSpeed: 5
   cameraZDepth: -10
   mouseSensitivity: 0.2
-  clampRadius: 15
+  clampRadius: 5
 --- !u!1 &560967095
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1325848742}
   playerControls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  mainCamera: {fileID: 519420031}
   animator: {fileID: 1325848745}
   move: Move
   jump: Jump
