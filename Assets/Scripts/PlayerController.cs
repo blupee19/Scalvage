@@ -171,27 +171,61 @@ public class PlayerController : MonoBehaviour
         dashTime = dashDuration;
         lastDashTime = Time.time;
 
-        dashDirection = new Vector2(moveDirection.x, moveDirection.y).normalized;
+        // Determine dash direction
+        if (moveDirection.x > 0 && !facingRight)
+        {
+            // Moving right but facing left -> Backward dash
+            dashDirection = Vector2.right;
+            animator.SetBool("isBackwardDashing", true);
+        }
+        else if (moveDirection.x < 0 && facingRight)
+        {
+            // Moving left but facing right -> Backward dash
+            dashDirection = Vector2.left;
+            animator.SetBool("isBackwardDashing", true);
+        }
+        else
+        {
+            // Dash in the direction character is facing
+            dashDirection = facingRight ? Vector2.right : Vector2.left;
+            animator.SetBool("isBackwardDashing", false);
+        }
 
-        if (moveDirection.x > 1)
-        {
-            dashDirection = Vector2.right;
-        }
-        if (moveDirection.x < 0)
-        {
-            dashDirection = Vector2.left;
-        }
-        if (facingRight && moveDirection.x == 0)
-        {
-            dashDirection = Vector2.right;
-        }
-        if (!facingRight && moveDirection.x == 0)
-        {
-            dashDirection = Vector2.left;
-        }
+        // Start dash coroutine
         StartCoroutine(DashCoroutine());
-
     }
+
+    //private void StartDash()
+    //{
+    //    Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+    //    Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+    //    Vector3 charPos = mainCamera.transform.right;
+
+    //    isDashing = true;
+    //    dashTime = dashDuration;
+    //    lastDashTime = Time.time;
+
+    //    dashDirection = new Vector2(moveDirection.x, moveDirection.y).normalized;
+
+    //    if (moveDirection.x > 1)
+    //    {
+    //        dashDirection = Vector2.right;
+    //    }
+    //    if (moveDirection.x < 0)
+    //    {
+    //        dashDirection = Vector2.left;
+    //    }
+    //    if (facingRight && moveDirection.x == 0)
+    //    {
+    //        dashDirection = Vector2.right;
+    //    }
+    //    if (!facingRight && moveDirection.x == 0)
+    //    {
+    //        dashDirection = Vector2.left;
+    //    }
+    //    StartCoroutine(DashCoroutine());
+
+    //}
 
     private IEnumerator DashCoroutine()
     {
@@ -230,15 +264,28 @@ public class PlayerController : MonoBehaviour
 
     void AnimationCalls()
     {
-
+        
         if (isDashing)
         {
-            animator.SetBool("isDashing", true);
+            if ((moveDirection.x > 0 && !facingRight) || (moveDirection.x < 0 && facingRight))
+            {
+                animator.SetBool("isBackwardDashing", true);
+                animator.SetBool("isDashing", false);                
+            }
+            else
+            {
+                animator.SetBool("isDashing", true);
+                animator.SetBool("isBackwardDashing", false);
+            }
+
             animator.SetBool("isJumping", false);
-        }
+            
+        }        
         else
         {
             animator.SetBool("isDashing", false);
+            animator.SetBool("isBackwardDashing", false);
+
             animator.SetFloat("Speed", Mathf.Abs(moveDirection.x));
 
             if (IsGrounded())
@@ -250,14 +297,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isJumping", true);
             }
         }
-        //if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
-        //{
-        //    animator.SetBool("isDashing", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("isDashing", false);
-        //}
+        
 
     }
 
