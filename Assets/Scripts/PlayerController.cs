@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isJumping", true);
         }
-        //if(SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
+        //if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
         //{
         //    animator.SetBool("isDashing", true);
         //}
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
         //{
         //    animator.SetBool("isDashing", false);
         //}
-        
+
     }
 
 }
