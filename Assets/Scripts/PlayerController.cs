@@ -205,22 +205,28 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-        Vector3 charPos = mainCamera.transform.right;
+        // Get the mouse position in world space
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Vector3.Dot(worldPosition,charPos) < 0f)
+        // Get the character's position
+        Vector2 characterPosition = transform.position;
+
+        // Calculate the direction from the character to the mouse
+        float direction = mouseWorldPosition.x - characterPosition.x;
+
+        // Flip the character based on the mouse's horizontal position relative to the character
+        if (direction < 0f && facingRight)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             facingRight = false;
         }
-
-        if (Vector3.Dot(worldPosition, charPos) >  0f)
+        else if (direction > 0f && !facingRight)
         {
             GetComponent<SpriteRenderer>().flipX = false;
             facingRight = true;
         }
     }
+
 
     void AnimationCalls()
     {
