@@ -1,5 +1,8 @@
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -7,6 +10,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public PlayerController controller;
     public InputActionAsset playerControls;
     private InputAction closeAttackAction;
+    public Animator weaponAnimator;
     public float offset = 0f;
     public bool closeAttack {  get; private set; }
 
@@ -33,6 +37,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Update()
     {
+        Quaternion weaponInitRot = weapon.transform.rotation;
+        Quaternion weaponRotation = new Quaternion(weaponInitRot.x, weaponInitRot.y, weaponInitRot.z + 360, weaponInitRot.w);
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
@@ -47,6 +53,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             weapon.GetComponent<SpriteRenderer>().flipY = false;
         }
 
+        if (closeAttack)
+        {
+            weaponAnimator.SetBool("closeAttack", true)
+
+        }
+        else
+        {
+            weaponAnimator.SetBool("closeAttack", false);
+        }
 
     }
 

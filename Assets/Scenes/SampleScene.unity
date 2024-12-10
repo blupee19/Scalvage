@@ -614,6 +614,7 @@ GameObject:
   - component: {fileID: 1316871564}
   - component: {fileID: 1316871565}
   - component: {fileID: 1316871566}
+  - component: {fileID: 1316871567}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -629,13 +630,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316871563}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.12114424, w: 0.9926349}
-  m_LocalPosition: {x: 0.885, y: 0, z: 0}
-  m_LocalScale: {x: 0.44853348, y: 0.44853348, z: 0.44853348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8853, y: 0, z: 0}
+  m_LocalScale: {x: 0.5833178, y: 0.5833178, z: 0.5833178}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1324955052}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.916}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1316871565
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -746,6 +747,28 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!95 &1316871567
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316871563}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eceb5a20e8985db439b35bb2cded3253, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1324955051
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +817,7 @@ MonoBehaviour:
   weapon: {fileID: 1316871563}
   controller: {fileID: 1325848741}
   playerControls: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  weaponAnimator: {fileID: 1316871567}
   offset: 0
 --- !u!1 &1325848736
 GameObject:
@@ -866,7 +890,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 1.51, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
