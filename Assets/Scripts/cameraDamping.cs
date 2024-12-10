@@ -42,23 +42,23 @@ public class CameraFollow : MonoBehaviour
     {
         // Lock the cursor to the center of the screen and make it invisible
         Cursor.lockState = CursorLockMode.Confined; // Confines the cursor within the game window
-        Cursor.visible = false; // Hides the cursor
+        
     }
 
     private void Update()
     {
-        // Optional: Allow the player to toggle the cursor lock state for debugging or menus
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // Unlock and show the cursor
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else if (Input.GetMouseButtonDown(0)) // Lock again on left-click
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = false;
-        }
+        //// Optional: Allow the player to toggle the cursor lock state for debugging or menus
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    // Unlock and show the cursor
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //}
+        //else if (Input.GetMouseButtonDown(0)) // Lock again on left-click
+        //{
+        //    Cursor.lockState = CursorLockMode.Confined;
+        //    Cursor.visible = true;
+        //}
     }
 
     private void LateUpdate()

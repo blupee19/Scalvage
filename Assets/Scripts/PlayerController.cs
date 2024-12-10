@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public InputActionAsset playerControls;
+    public Camera mainCamera;
     public Animator animator;
 
     [Header("Action Map Name")]
@@ -162,17 +163,29 @@ public class PlayerController : MonoBehaviour
 
     private void StartDash()
     {
+        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+        Vector3 charPos = mainCamera.transform.right;
+
         isDashing = true;
         dashTime = dashDuration;
         lastDashTime = Time.time;
 
         dashDirection = new Vector2(moveDirection.x, moveDirection.y).normalized;
 
-        if (facingRight)
+        if (moveDirection.x > 1)
         {
             dashDirection = Vector2.right;
         }
-        else 
+        if (moveDirection.x < 0)
+        {
+            dashDirection = Vector2.left;
+        }
+        if (facingRight && moveDirection.x == 0)
+        {
+            dashDirection = Vector2.right;
+        }
+        if (!facingRight && moveDirection.x == 0)
         {
             dashDirection = Vector2.left;
         }
@@ -192,13 +205,17 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
-        if (moveDirection.x < 0f)
+        Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+        Vector3 charPos = mainCamera.transform.right;
+
+        if (Vector3.Dot(worldPosition,charPos) < 0f)
         {
             GetComponent<SpriteRenderer>().flipX = true;
             facingRight = false;
         }
 
-        if (moveDirection.x > 0f)
+        if (Vector3.Dot(worldPosition, charPos) >  0f)
         {
             GetComponent<SpriteRenderer>().flipX = false;
             facingRight = true;
