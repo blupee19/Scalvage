@@ -12,6 +12,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private InputAction closeAttackAction;
     public Animator weaponAnimator;
     public float offset = 0f;
+    public Transform circleOrigin;
+    public float radius;
     public bool closeAttack {  get; private set; }
 
     private void Awake()
@@ -32,7 +34,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Start()
     {
-        weapon.GetComponent<EdgeCollider2D>().enabled = false;
+        //...
     }
 
     private void Update()
@@ -55,7 +57,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (closeAttack)
         {
-            weaponAnimator.SetBool("closeAttack", true)
+            weaponAnimator.SetBool("closeAttack", true);
 
         }
         else
@@ -63,6 +65,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
             weaponAnimator.SetBool("closeAttack", false);
         }
 
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Vector3 position = circleOrigin == null ? Vector3.zero : circleOrigin.position;
+        Gizmos.DrawWireSphere(position, radius);
+    }
+
+    public void DetectColliders()
+    {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
+        {
+            //Debug.Log(collider.name);
+            Health health;
+            if(health = collider.GetComponent<Health>())
+            {
+                health.GetHit(1, transform.parent.gameObject);
+            }
+        }
     }
 
 }
