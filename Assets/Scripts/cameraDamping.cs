@@ -15,6 +15,7 @@ public class CameraFollow : MonoBehaviour
     public float cameraZDepth = -10f; // Fixed Z position of the camera in 2D
     private Camera mainCamera;
     public float mouseSensitivity = 0.2f;
+    public float yOffset = 0.5f;
 
     [Header("Clamp Settings")]
     public float clampRadius = 5f; // Maximum distance camera can move from the player
@@ -73,7 +74,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 cameraPosition = mainCamera.transform.position;
 
         // Calculate the new camera position based on mouse input
-        Vector3 newCameraPosition = cameraPosition + new Vector3(mouseX, mouseY + 2, 0);
+        Vector3 newCameraPosition = cameraPosition + new Vector3(mouseX, mouseY + yOffset, 0);
 
         // Clamp the camera's position to within a certain radius of the player
         Vector3 playerPosition = playerController.transform.position;
