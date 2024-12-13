@@ -26,8 +26,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         closeAttackAction.performed += context => closeAttack = true;
         closeAttackAction.canceled += context => closeAttack = false;
 
-        throwAttackAction.performed += context => throwAttack = true;
-        throwAttackAction.canceled += context => throwAttack = false;
+        throwAttackAction.performed += context => throwAttack = false;
+        throwAttackAction.canceled += context => throwAttack = true;
     }
 
     private void OnEnable()
@@ -103,7 +103,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void ThrowWeapon()
     {
-        Destroy(weapon);
+        if (weapon.activeSelf)
+        {
+            weapon.SetActive(false);
+        }
+        else
+        {
+            weapon.SetActive(true);
+        }
     }
 
 }
