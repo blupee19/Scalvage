@@ -10,26 +10,35 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public PlayerController controller;
     public InputActionAsset playerControls;
     private InputAction closeAttackAction;
+    private InputAction throwAttackAction;
     public Animator weaponAnimator;
     public float offset = 0f;
     public Transform circleOrigin;
     public float radius;
     public bool closeAttack {  get; private set; }
+    public bool throwAttack { get; private set; }
 
     private void Awake()
     {
         closeAttackAction = playerControls.FindActionMap("Player").FindAction("Attack");
+        throwAttackAction = playerControls.FindActionMap("Player").FindAction("Throw");
+        
         closeAttackAction.performed += context => closeAttack = true;
         closeAttackAction.canceled += context => closeAttack = false;
+
+        throwAttackAction.performed += context => throwAttack = false;
+        throwAttackAction.canceled += context => throwAttack = true;
     }
 
     private void OnEnable()
     {
         closeAttackAction.Enable();
+        throwAttackAction.Enable();
     }
     private void OnDisable()
     {
         closeAttackAction.Disable();
+        throwAttackAction.Disable();
     }
 
     private void Start()
@@ -65,6 +74,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             weaponAnimator.SetBool("closeAttack", false);
         }
 
+        if (throwAttack)
+        {
+            ThrowWeapon();
+        }
+
     }
 
     private void OnDrawGizmosSelected()
@@ -84,6 +98,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 health.GetHit(1, transform.parent.gameObject);
             }
+        }
+    }
+
+    private void ThrowWeapon()
+    {
+        if (weapon.activeSelf)
+        {
+            weapon.SetActive(false);
+        }
+        else
+        {
+            weapon.SetActive(true);
         }
     }
 
