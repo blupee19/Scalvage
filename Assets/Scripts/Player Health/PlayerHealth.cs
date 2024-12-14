@@ -25,11 +25,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(0.2f);
+            TakeDamage(0.3f);
+            Debug.Log("Hit!!!");
         }
     }
 }
