@@ -46,22 +46,6 @@ public class CameraFollow : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        //// Optional: Allow the player to toggle the cursor lock state for debugging or menus
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    // Unlock and show the cursor
-        //    Cursor.lockState = CursorLockMode.None;
-        //    Cursor.visible = true;
-        //}
-        //else if (Input.GetMouseButtonDown(0)) // Lock again on left-click
-        //{
-        //    Cursor.lockState = CursorLockMode.Confined;
-        //    Cursor.visible = true;
-        //}
-    }
-
     private void LateUpdate()
     {
         if (playerController == null || mainCamera == null) return;

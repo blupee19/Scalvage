@@ -195,38 +195,6 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(DashCoroutine());
     }
 
-    //private void StartDash()
-    //{
-    //    Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-    //    Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
-    //    Vector3 charPos = mainCamera.transform.right;
-
-    //    isDashing = true;
-    //    dashTime = dashDuration;
-    //    lastDashTime = Time.time;
-
-    //    dashDirection = new Vector2(moveDirection.x, moveDirection.y).normalized;
-
-    //    if (moveDirection.x > 1)
-    //    {
-    //        dashDirection = Vector2.right;
-    //    }
-    //    if (moveDirection.x < 0)
-    //    {
-    //        dashDirection = Vector2.left;
-    //    }
-    //    if (facingRight && moveDirection.x == 0)
-    //    {
-    //        dashDirection = Vector2.right;
-    //    }
-    //    if (!facingRight && moveDirection.x == 0)
-    //    {
-    //        dashDirection = Vector2.left;
-    //    }
-    //    StartCoroutine(DashCoroutine());
-
-    //}
-
     private IEnumerator DashCoroutine()
     {
         rb.linearVelocityX = dashDirection.x * dashSpeed * moveSpeed;
