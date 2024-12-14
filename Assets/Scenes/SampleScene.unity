@@ -5582,8 +5582,12 @@ MonoBehaviour:
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
-  Enemy: {fileID: 1340284354}
+  EnemyEye: {fileID: 0}
   isDead: 0
+  destroyDelay: 2
+  enemyCollider: {fileID: 0}
+  hitForce: 0
+  hitTorque: 0
 --- !u!58 &1082506171
 CircleCollider2D:
   m_ObjectHideFlags: 0
