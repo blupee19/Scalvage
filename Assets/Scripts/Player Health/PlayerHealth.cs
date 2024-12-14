@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage(0.8f);
+            TakeDamage(1f);
             Debug.Log("Hit!!!");
         }
     }
