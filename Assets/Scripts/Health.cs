@@ -5,6 +5,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private int currentHealth, maxHealth;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
+    public GameObject Enemy;
     [SerializeField] private bool isDead = false;
 
     public void InitializeHealth(int healthValue)
@@ -30,7 +31,7 @@ public class Health : MonoBehaviour
         {
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
-            Destroy(gameObject);
+            Destroy(Enemy);
         }
 
 

@@ -3809,6 +3809,7 @@ MonoBehaviour:
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
+  Enemy: {fileID: 1340284354}
   isDead: 0
 --- !u!58 &1082506171
 CircleCollider2D:
@@ -5078,6 +5079,7 @@ MonoBehaviour:
   OnDeathWithReference:
     m_PersistentCalls:
       m_Calls: []
+  Enemy: {fileID: 0}
   isDead: 0
 --- !u!1 &1340284354
 GameObject:
