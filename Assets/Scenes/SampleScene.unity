@@ -7404,9 +7404,9 @@ GameObject:
   - component: {fileID: 1340284355}
   - component: {fileID: 1340284358}
   - component: {fileID: 1340284360}
-  - component: {fileID: 1340284359}
-  - component: {fileID: 1340284362}
   - component: {fileID: 1340284361}
+  - component: {fileID: 1340284363}
+  - component: {fileID: 1340284362}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -7458,7 +7458,24 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!50 &1340284359
+--- !u!114 &1340284360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340284354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2902293cba347864db7635093a5e9109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1325848739}
+  speed: 800
+  nextWaypointDistance: 3
+  detectionRadius: 20
+  enemyGFX: {fileID: 1082506169}
+--- !u!50 &1340284361
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -7485,7 +7502,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1340284360
+--- !u!114 &1340284362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7494,15 +7511,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1340284354}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2902293cba347864db7635093a5e9109, type: 3}
+  m_Script: {fileID: 11500000, guid: 5eae335bc4ab0124c9d0f699224f03e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1325848739}
-  speed: 400
-  nextWaypointDistance: 3
-  detectionRadius: 20
-  enemyGFX: {fileID: 1082506169}
---- !u!58 &1340284361
+  currentHealth: 10
+  maxHealth: 10
+  OnHitWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathWithReference:
+    m_PersistentCalls:
+      m_Calls: []
+  EnemyEye: {fileID: 1340284354}
+  isDead: 0
+  destroyDelay: 2
+  enemyCollider: {fileID: 1340284363}
+  hitForce: 20
+  hitTorque: 2.5
+--- !u!58 &1340284363
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7536,34 +7562,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.019127743, y: 0.1308997}
-  m_Radius: 0.46652746
---- !u!114 &1340284362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340284354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eae335bc4ab0124c9d0f699224f03e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 10
-  maxHealth: 10
-  OnHitWithReference:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeathWithReference:
-    m_PersistentCalls:
-      m_Calls: []
-  EnemyEye: {fileID: 1340284354}
-  isDead: 0
-  destroyDelay: 2
-  enemyCollider: {fileID: 1340284361}
-  hitForce: 20
-  hitTorque: 2.5
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1001 &1346786426
 PrefabInstance:
   m_ObjectHideFlags: 0

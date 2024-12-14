@@ -9,7 +9,11 @@ public class Health : MonoBehaviour
     [SerializeField] private bool isDead = false;
     [SerializeField] private float destroyDelay = 2f;
     private Rigidbody2D rb;
+    private Animator animator; 
+    
+
     public Collider2D enemyCollider;
+    //public Animator animator;
 
     [SerializeField] private float hitForce = 20f, hitTorque = 2.5f;
 
@@ -20,6 +24,7 @@ public class Health : MonoBehaviour
     {
         rb = EnemyEye.GetComponent<Rigidbody2D>();
         enemyAI = GetComponent<EnemyEyeAI>();
+        animator = GetComponentInChildren<Animator>();
     }
     public void InitializeHealth(int healthValue)
     {
@@ -44,7 +49,8 @@ public class Health : MonoBehaviour
         {
             OnDeathWithReference?.Invoke(sender);
             isDead = true;
-
+            
+            
             DisableAI();
 
             EnableGravity();
@@ -63,6 +69,7 @@ public class Health : MonoBehaviour
             rb.gravityScale = 9;
             enemyCollider.isTrigger = false;
             rb.freezeRotation = false;
+            AnimationCalls();
 
         }
     }
@@ -85,14 +92,19 @@ public class Health : MonoBehaviour
         else
         {
             rb.AddTorque(hitTorque, ForceMode2D.Impulse);
-        }
-           
-
-
+        }         
     }
 
     private void DisableAI()
     {
         enemyAI.enabled = false;              
+    }
+
+    private void AnimationCalls()
+    {
+        if (currentHealth <= 0)
+        {
+            animator.SetBool("isDead", true);
+        }
     }
 }
