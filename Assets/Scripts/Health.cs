@@ -3,15 +3,15 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int currentHealth, maxHealth;
+    [SerializeField] private int currentHealth = 10, maxHealth = 10;
     public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     public GameObject EnemyEye;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float destroyDelay = 2f;
     private Rigidbody2D rb;
-    public CircleCollider2D enemyCollider;
+    public Collider2D enemyCollider;
 
-    [SerializeField] private float hitForce, hitTorque;
+    [SerializeField] private float hitForce = 20f, hitTorque = 2.5f;
 
     private EnemyEyeAI enemyAI; 
 
