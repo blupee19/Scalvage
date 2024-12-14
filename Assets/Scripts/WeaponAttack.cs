@@ -103,14 +103,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void ThrowWeapon()
     {
-        if (weapon.activeSelf)
-        {
-            weapon.SetActive(false);
-        }
-        else
-        {
-            weapon.SetActive(true);
-        }
+      //...
     }
 
 }
