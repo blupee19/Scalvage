@@ -7498,7 +7498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1325848739}
-  speed: 800
+  speed: 400
   nextWaypointDistance: 3
   detectionRadius: 20
   enemyGFX: {fileID: 1082506169}
@@ -7532,12 +7532,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: -0.019127743, y: 0.1308997}
+  m_Radius: 0.46652746
 --- !u!114 &1340284362
 MonoBehaviour:
   m_ObjectHideFlags: 0
