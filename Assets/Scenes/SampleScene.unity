@@ -4359,7 +4359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 807753437}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6622,7 +6622,7 @@ GameObject:
   - component: {fileID: 1316871565}
   - component: {fileID: 1316871567}
   - component: {fileID: 1316871568}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6860,7 +6860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1324955052}
   - component: {fileID: 1324955053}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Weapon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6918,7 +6918,7 @@ GameObject:
   - component: {fileID: 1325848745}
   - component: {fileID: 1325848746}
   - component: {fileID: 1325848747}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6989,7 +6989,7 @@ Transform:
   m_GameObject: {fileID: 1325848736}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.44, y: 3.87, z: 0}
+  m_LocalPosition: {x: -56.1, y: 6.3, z: 0}
   m_LocalScale: {x: 2.37, y: 2.37, z: 2.37}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7282,8 +7282,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0efc78d5979ae47b7488aec5d2bb33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1325848736}
   startingHealth: 3
   mainCamera: {fileID: 519420031}
+  dead: 0
+  iFramesDuration: 1.5
+  numOfFlashes: 3
 --- !u!1 &1340284354
 GameObject:
   m_ObjectHideFlags: 0
@@ -7298,8 +7302,7 @@ GameObject:
   - component: {fileID: 1340284361}
   - component: {fileID: 1340284363}
   - component: {fileID: 1340284362}
-  - component: {fileID: 1340284364}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -7315,7 +7318,7 @@ Transform:
   m_GameObject: {fileID: 1340284354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.012, y: 3.9684, z: 0}
+  m_LocalPosition: {x: 16.8, y: 5.12, z: 0}
   m_LocalScale: {x: 3.1895885, y: 3.1460164, z: 1.2828}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7367,6 +7370,7 @@ MonoBehaviour:
   nextWaypointDistance: 3
   detectionRadius: 20
   enemyGFX: {fileID: 2145619676}
+  damage: 1
 --- !u!50 &1340284361
 Rigidbody2D:
   serializedVersion: 5
@@ -7390,9 +7394,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1340284362
 MonoBehaviour:
@@ -7456,26 +7460,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.06}
   m_Radius: 0.38
---- !u!114 &1340284364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340284354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9a4d15422957645bc8b0f20cccb944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
-  flashTime: 0.25
-  spriteRenderers: {fileID: 0}
-  materials: {fileID: 0}
 --- !u!1001 &1346786426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8324,7 +8308,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -1.363832, y: -0.022282414}
+  m_Offset: {x: -1.363832, y: -0.77431166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -8334,7 +8318,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 14.932536, y: 0.31274068}
+  m_Size: {x: 14.932536, y: 1.8167994}
   m_EdgeRadius: 0
 --- !u!1 &1540192651
 GameObject:
@@ -10054,10 +10038,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1540192652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -847, y: 498}
-  m_SizeDelta: {x: 200.7, y: 192.1265}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 157.50708, y: -110.247925}
+  m_SizeDelta: {x: 315.014, y: 220.4958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747480230
 MonoBehaviour:
@@ -11230,10 +11214,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1540192652}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -847, y: 498}
-  m_SizeDelta: {x: 200.7, y: 192.13}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 157.50708, y: -110.25}
+  m_SizeDelta: {x: 315.014, y: 220.4999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983563852
 MonoBehaviour:
@@ -11638,7 +11622,7 @@ GameObject:
   - component: {fileID: 2145619676}
   - component: {fileID: 2145619678}
   - component: {fileID: 2145619677}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EnemyGFX
   m_TagString: Enemy
   m_Icon: {fileID: 0}

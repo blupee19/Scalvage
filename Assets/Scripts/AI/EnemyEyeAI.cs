@@ -18,6 +18,8 @@ public class EnemyEyeAI : MonoBehaviour
     bool reachedEndOfPath = false;
     bool targetDetected = false; // To check if the target is within the detection radius
 
+    [SerializeField] private int damage = 1;
+
     Seeker seeker;
     Rigidbody2D rb;
 
@@ -104,5 +106,13 @@ public class EnemyEyeAI : MonoBehaviour
         // Draw the detection radius in the scene view for debugging
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
     }
 }
