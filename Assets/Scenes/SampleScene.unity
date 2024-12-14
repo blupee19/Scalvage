@@ -1876,7 +1876,7 @@ MonoBehaviour:
   smoothSpeed: 5
   cameraZDepth: -10
   mouseSensitivity: 0.5
-  yOffset: 2.5
+  yOffset: 0.3
   clampRadius: 10
 --- !u!1 &549436513
 GameObject:
