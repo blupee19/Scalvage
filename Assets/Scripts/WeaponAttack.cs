@@ -19,11 +19,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private InputAction closeAttackAction;
     private InputAction throwAttackAction;
 
-    [Header ("Variables")]
-    public float throwForce;
-    public float offset = 0f;
-    public bool weaponDestroyed = false;
-    public float radius;
+    [Header("Variables")]
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private float throwForce;
+    [SerializeField] private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] private float offset = 0f;
+    [SerializeField] private float radius = 1.59f;
     public bool closeAttack {  get; private set; }
     public bool throwAttack { get; private set; }
 
@@ -88,8 +89,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (throwAttack)
         {
-            //...
+            if (throwAttack && cooldownTimer > attackCooldown)
+            {
+                ThrowAttack();
+            }
         }
+
+        cooldownTimer += Time.deltaTime;
 
     }
 
@@ -111,6 +117,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 health.GetHit(1, transform.parent.gameObject);
             }
         }
+    }
+
+    private void ThrowAttack()
+    {
+        weaponAnimator.SetTrigger("throwAttack");
+        cooldownTimer = 0;
     }
 
 

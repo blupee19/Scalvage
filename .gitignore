@@ -80,3 +80,5 @@ crashlytics-build.properties
 .plastic/plastic.wktree
 *.changes
 *.wktree
+*.changes
+*.wktree
