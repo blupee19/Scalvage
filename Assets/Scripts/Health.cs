@@ -58,6 +58,7 @@ public class Health : MonoBehaviour
             EnableGravity();
             RollAfterDeath(sender);
             AnimationCalls();
+            Physics2D.IgnoreLayerCollision(10,11,true);
 
             Invoke(nameof(DestroyEnemy), destroyDelay);
         }

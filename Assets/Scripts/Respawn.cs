@@ -11,6 +11,7 @@ public class Respawn : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.transform.position = respawnPoint.transform.position;
+            other.GetComponent<PlayerHealth>().TakeDamage(1);
         }
     }
 }
