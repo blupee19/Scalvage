@@ -29,47 +29,42 @@ public class HandEnemyHealth : MonoBehaviour
 
     public void GetHit(int amount, GameObject sender)
     {
-        // Debug: Check if the enemy is dead already
         if (isDead)
         {
-            Debug.Log("Enemy is already dead. No damage can be applied.");
             return;
         }
 
-        // Debug: Check if the sender is on the same layer as the enemy
+        // Only allow damage if the enemy is not underground (use emerging state check or position check)
+        if (handEnemyAI != null && !handEnemyAI.isEmerging) // Check if the enemy is emerging
+        {
+            return;
+        }
+
         if (sender.layer == gameObject.layer)
         {
-            Debug.Log("Sender is on the same layer. No damage applied.");
             return;
         }
 
-        // Debug: Display the current health before applying damage
-        Debug.Log("Before damage: Current Health = " + currentHealth);
-
-        currentHealth -= amount;  // Reduce the health by the damage amount
-        ApplyRecoil(sender);  // Apply recoil force in the opposite direction
-
-        // Debug: Display the new health after damage
-        Debug.Log("After damage: Current Health = " + currentHealth);
-
-        if (currentHealth > 0)
+        if (handEnemyAI.isEmerging)
         {
-            OnHitWithReference?.Invoke(sender);
-        }
-        else
-        {
-            OnDeathWithReference?.Invoke(sender);
-            isDead = true;
+            currentHealth -= amount;
+            ApplyRecoil(sender);
 
-            // Debug: Display when the enemy dies
-            Debug.Log("Enemy is dead");
+            if (currentHealth > 0)
+            {
+                OnHitWithReference?.Invoke(sender);
+            }
+            else
+            {
+                OnDeathWithReference?.Invoke(sender);
+                isDead = true;
 
-            // Disable AI, stop movement, etc.
-            DisableAI();
-            handCollider.isTrigger = false;  // Ensure collider is not a trigger on death
-            //AnimationCalls();  // Trigger death animation
+                DisableAI();
+                handCollider.isTrigger = false;
 
-            Invoke(nameof(DestroyHand), destroyDelay);
+                Invoke(nameof(DestroyHand), destroyDelay);
+            }
+        
         }
     }
 
@@ -87,11 +82,8 @@ public class HandEnemyHealth : MonoBehaviour
 
     private void ApplyRecoil(GameObject sender)
     {
-        // Calculate the direction from the sender to the hand enemy (opposite of the hit direction)
         Vector2 hitDirection = (HandEnemy.transform.position - sender.transform.position).normalized;
-
-        // Apply a recoil force in the opposite direction of the hit
-        Vector2 recoilForce = hitDirection * hitForce;
-        rb.AddForce(recoilForce, ForceMode2D.Impulse);
+          
+        rb.AddForce(hitDirection * hitForce, ForceMode2D.Impulse);
     }
 }

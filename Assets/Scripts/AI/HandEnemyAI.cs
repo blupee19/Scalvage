@@ -12,6 +12,7 @@ public class HandEnemyAI : MonoBehaviour
     public float increasedSpeed = 5f;
     public float patrolDistance = 5f;
     public float detectionRadius = 10f;
+    public bool isEmerging = false;
 
     [SerializeField] private int damage = 1;
 
@@ -23,6 +24,7 @@ public class HandEnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private HandEnemyAI handEnemyAI;
 
     void Start()
     {
@@ -41,13 +43,13 @@ public class HandEnemyAI : MonoBehaviour
             float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(target.position.x, 0f));
             if (distanceToPlayer <= 5f)
             {
-                // Start the "NearPlayer" animation
                 AnimationCalls(true);
+                isEmerging = true;
             }
             else
             {
-                // Stop the "NearPlayer" animation if the player moves further
                 AnimationCalls(false);
+                isEmerging = false;
             }
             ChasePlayer();
         }
@@ -140,4 +142,6 @@ public class HandEnemyAI : MonoBehaviour
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
+
+   
 }
