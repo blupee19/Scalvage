@@ -9,6 +9,7 @@ public class GroundEnemyAI : MonoBehaviour
 {
     public Transform target;
     public float speed = 2f;
+    public float increasedSpeed = 5f;
     public float patrolDistance = 5f;
     public float detectionRadius = 10f;
 
@@ -17,7 +18,7 @@ public class GroundEnemyAI : MonoBehaviour
     private Vector2 startingPosition;
     private bool movingRight = true;
     private bool targetDetected = false;
-    private bool hasEmerged = false;
+ 
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -31,19 +32,32 @@ public class GroundEnemyAI : MonoBehaviour
 
 
     void FixedUpdate()
-    {        
+    {   
+        DetectPlayer();
         if (targetDetected)
         {
-            animator.SetBool("NearPlayer", true);
+            // If the distance to the player is 4 units or less, trigger the animation
+            float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(target.position.x, 0f));
+            if (distanceToPlayer <= 5f)
+            {
+                // Start the "NearPlayer" animation
+                AnimationCalls(true);
+            }
+            else
+            {
+                // Stop the "NearPlayer" animation if the player moves further
+                AnimationCalls(false);
+            }
             ChasePlayer();
         }
         else
         {
-            animator.SetBool("NearPlayer", false);
+            // Stop chasing and return to patrol
+            AnimationCalls(false);
             Patrol();
         }
 
-        DetectPlayer();
+
     }
 
     void Patrol()
@@ -90,6 +104,12 @@ public class GroundEnemyAI : MonoBehaviour
         float direction = Mathf.Sign(target.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * speed, 0f);
     }
+
+    private void AnimationCalls(bool isNearPlayer)
+    {
+        animator.SetBool("NearPlayer", isNearPlayer);
+    }
+
 
     private void OnDrawGizmosSelected()
     {
