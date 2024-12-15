@@ -3,6 +3,7 @@ using UnityEngine;
 public class KnifeProjectile : MonoBehaviour
 {
     [SerializeField] private float speed;
+    private float direction;
     private Animator anim;
     private bool hit;
     private Collider2D knifeCollider;
@@ -15,7 +16,7 @@ public class KnifeProjectile : MonoBehaviour
     void Update()
     {
         if (hit) return;
-        float movementSpeed = speed * Time.deltaTime;
+        float movementSpeed = speed * Time.deltaTime * direction;
         transform.Translate(movementSpeed, 0, 0);
     }
 
@@ -28,6 +29,14 @@ public class KnifeProjectile : MonoBehaviour
 
     public void SetDirection(float _direction)
     {
+        direction = _direction;
+        gameObject.SetActive(true);
         hit = false;
+        knifeCollider.enabled = true;
+    }
+
+    private void Deactiviate()
+    {
+        gameObject.SetActive(false);
     }
 }
