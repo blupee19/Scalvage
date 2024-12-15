@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             StartCoroutine(Invulnerability());
-            StartCoroutine(Shake(0.2f, 0.2f));
+            StartCoroutine(Shake(0.2f, 0.3f));
 
         }
         else
@@ -54,18 +54,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Enemy"))
-    //    {
-    //        TakeDamage(1f);
-    //        StartCoroutine(Shake(0.2f,0.2f));
-    //        StartCoroutine(Invulnerability());
-
-    //        Debug.Log("Hit!!!");
-    //    }
-    //}
 
 
     public IEnumerator Shake(float duration, float magnitude)
