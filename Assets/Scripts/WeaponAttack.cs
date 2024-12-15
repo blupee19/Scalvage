@@ -22,7 +22,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Variables")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float throwForce;
-    [SerializeField] private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] public float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float offset = 0f;
     [SerializeField] private float radius = 1.59f;
     public bool closeAttack {  get; private set; }
