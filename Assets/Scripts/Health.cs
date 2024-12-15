@@ -56,9 +56,9 @@ public class Health : MonoBehaviour
             //BloodSplash(); // Trigger blood splash on death
             DisableAI();
             EnableGravity();
+            Physics2D.IgnoreLayerCollision(10, 11, true);
             RollAfterDeath(sender);
-            AnimationCalls();
-            Physics2D.IgnoreLayerCollision(10,11,true);
+            AnimationCalls();            
 
             Invoke(nameof(DestroyEnemy), destroyDelay);
         }
