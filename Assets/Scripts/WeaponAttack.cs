@@ -7,11 +7,14 @@ using UnityEngine.UIElements;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    [Header ("Gameobjects")]
+    [Header("Gameobjects")]
     public GameObject weapon;
     public GameObject weaponHolder;
+    public GameObject knife;
     public Animator weaponAnimator;
     public Transform circleOrigin;
+    public Transform firePoint;
+
 
     [Header("Input Actions")]
     public PlayerController controller;
@@ -20,19 +23,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private InputAction throwAttackAction;
 
     [Header("Variables")]
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float throwForce;
-    [SerializeField] public float cooldownTimer = Mathf.Infinity;
+    public float attackCooldown;
+    public float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float offset = 0f;
     [SerializeField] private float radius = 1.59f;
-    public bool closeAttack {  get; private set; }
+    [SerializeField] private float knifeSpeed = 10f;
+    public bool closeAttack { get; private set; }
     public bool throwAttack { get; private set; }
 
     private void Awake()
     {
         closeAttackAction = playerControls.FindActionMap("Player").FindAction("Attack");
         throwAttackAction = playerControls.FindActionMap("Player").FindAction("Throw");
-        
+
         closeAttackAction.performed += context => closeAttack = true;
         closeAttackAction.canceled += context => closeAttack = false;
 
@@ -72,7 +75,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             weapon.GetComponent<SpriteRenderer>().flipY = true;
         }
-        else 
+        else
         {
             weapon.GetComponent<SpriteRenderer>().flipY = false;
         }
@@ -87,12 +90,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
             weaponAnimator.SetBool("closeAttack", false);
         }
 
-        if (throwAttack)
+        if (throwAttack && cooldownTimer > attackCooldown)
         {
-            if (throwAttack && cooldownTimer > attackCooldown)
-            {
-                ThrowAttack();
-            }
+            ThrowAttack();
         }
 
         cooldownTimer += Time.deltaTime;
@@ -112,7 +112,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             //Debug.Log(collider.name);
             Health health;
-            if(health = collider.GetComponent<Health>())
+            if (health = collider.GetComponent<Health>())
             {
                 health.GetHit(1, transform.parent.gameObject);
             }
@@ -124,8 +124,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         weaponAnimator.SetTrigger("throwAttack");
         cooldownTimer = 0;
     }
-
-
 }
 
 
