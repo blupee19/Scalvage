@@ -5,7 +5,7 @@ using Pathfinding;
 using System.IO;
 
 
-public class GroundEnemyAI : MonoBehaviour
+public class HandEnemyAI : MonoBehaviour
 {
     public Transform target;
     public float speed = 2f;
@@ -18,7 +18,8 @@ public class GroundEnemyAI : MonoBehaviour
     private Vector2 startingPosition;
     private bool movingRight = true;
     private bool targetDetected = false;
- 
+    private bool canDamage = false;
+
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -27,12 +28,12 @@ public class GroundEnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         startingPosition = transform.position;
-        animator = GetComponentInChildren<Animator>();    
+        animator = GetComponentInChildren<Animator>();
     }
 
 
     void FixedUpdate()
-    {   
+    {
         DetectPlayer();
         if (targetDetected)
         {
@@ -78,13 +79,24 @@ public class GroundEnemyAI : MonoBehaviour
         else
         {
             rb.linearVelocity = new Vector2(-speed, 0f);
-            if(transform.position.x <= leftBound)
+            if (transform.position.x <= leftBound)
             {
                 movingRight = true;
             }
         }
     }
-    
+
+    public void EnableDamage()
+    {
+        canDamage = true;
+    }
+
+    // Function called by the Animation Event to disable damage
+    public void DisableDamage()
+    {
+        canDamage = false;
+    }
+
     void DetectPlayer()
     {
         //Check if the player is withing the detection radius
@@ -123,7 +135,7 @@ public class GroundEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && gameObject.CompareTag("Enemy") && canDamage)
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }

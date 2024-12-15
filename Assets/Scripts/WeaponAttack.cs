@@ -112,9 +112,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             //Debug.Log(collider.name);
             Health health;
-            if(health = collider.GetComponent<Health>())
+            HandEnemyHealth handEnemyHealth;
+            if (health = collider.GetComponent<Health>())
             {
                 health.GetHit(1, transform.parent.gameObject);
+            }
+            
+            else if(handEnemyHealth = collider.GetComponent<HandEnemyHealth>())
+            {
+                handEnemyHealth.GetHit(1, transform.parent.gameObject);
             }
         }
     }
