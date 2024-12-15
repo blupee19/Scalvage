@@ -10,6 +10,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header ("Gameobjects")]
     public GameObject weapon;
     public GameObject weaponHolder;
+    public GameObject knife;
+    public Transform firePoint;
     public Animator weaponAnimator;
     public Transform circleOrigin;
 
@@ -129,6 +131,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         weaponAnimator.SetTrigger("throwAttack");
         cooldownTimer = 0;
+        Instantiate(knife, firePoint.position, Quaternion.identity);
     }
 
 
