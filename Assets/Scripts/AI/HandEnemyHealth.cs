@@ -7,7 +7,7 @@ public class HandEnemyHealth : MonoBehaviour
     public GameObject HandEnemy;  // Reference to the hand enemy
     public Collider2D handCollider;  // Collider of the hand enemy
 
-    [SerializeField] private int currentHealth = 10, maxHealth = 10;
+    [SerializeField] private int currentHealth = 20, maxHealth = 20;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float destroyDelay = 2f;
     [SerializeField] private float hitForce = 20f;  // The recoil force when hit
@@ -49,6 +49,8 @@ public class HandEnemyHealth : MonoBehaviour
         {
             currentHealth -= amount;
             ApplyRecoil(sender);
+            
+
 
             if (currentHealth > 0)
             {
@@ -59,7 +61,7 @@ public class HandEnemyHealth : MonoBehaviour
                 OnDeathWithReference?.Invoke(sender);
                 isDead = true;
 
-                DisableAI();
+                handEnemyAI.enabled = false;
                 handCollider.isTrigger = false;
 
                 Invoke(nameof(DestroyHand), destroyDelay);
@@ -74,16 +76,20 @@ public class HandEnemyHealth : MonoBehaviour
         Destroy(HandEnemy);
     }
 
-    private void DisableAI()
-    {
-        handEnemyAI.enabled = false;
-    }
+    //private void DisableAI()
+    //{
+    //    handEnemyAI.enabled = false;
+    //}
     
 
     private void ApplyRecoil(GameObject sender)
     {
+        handEnemyAI.enabled = false;
         Vector2 hitDirection = (HandEnemy.transform.position - sender.transform.position).normalized;
           
-        rb.AddForce(hitDirection * hitForce, ForceMode2D.Impulse);
+        rb.AddForce(hitDirection * hitForce * 2, ForceMode2D.Impulse);
+        
+        Debug.Log("Recoil Applied");
+        handEnemyAI.enabled = true;
     }
 }

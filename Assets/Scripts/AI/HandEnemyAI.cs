@@ -41,7 +41,7 @@ public class HandEnemyAI : MonoBehaviour
         {
             // If the distance to the player is 4 units or less, trigger the animation
             float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(target.position.x, 0f));
-            if (distanceToPlayer <= 5f)
+            if (distanceToPlayer <= 8f)
             {
                 AnimationCalls(true);
                 isEmerging = true;
