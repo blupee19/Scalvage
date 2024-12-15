@@ -129,6 +129,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         weaponAnimator.SetTrigger("throwAttack");
         cooldownTimer = 0;
+        Instantiate(knife, firePoint.position, Quaternion.identity);
     }
 
 
