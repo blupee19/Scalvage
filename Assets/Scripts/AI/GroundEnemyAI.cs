@@ -17,6 +17,7 @@ public class GroundEnemyAI : MonoBehaviour
     private Vector2 startingPosition;
     private bool movingRight = true;
     private bool targetDetected = false;
+    private bool hasEmerged = false;
 
     private Rigidbody2D rb;
     private Animator animator;
@@ -30,13 +31,15 @@ public class GroundEnemyAI : MonoBehaviour
 
 
     void FixedUpdate()
-    {
+    {        
         if (targetDetected)
         {
+            animator.SetBool("NearPlayer", true);
             ChasePlayer();
         }
         else
         {
+            animator.SetBool("NearPlayer", false);
             Patrol();
         }
 
