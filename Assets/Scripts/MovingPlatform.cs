@@ -6,9 +6,10 @@ public class MovingPlatform : MonoBehaviour
     public Transform posA, posB;  // Start and end positions
     public float Speed = 5f;     // Speed of movement
     private Vector2 targetPos;   // Current target position
-    private Rigidbody2D rb;      // Reference to Rigidbody2D
+    private Rigidbody2D rb;
+    public bool playerOnPlatform = false;
 
-    public GameObject player;    // Reference to the player object
+    public Rigidbody2D playerrb;    // Reference to the player object
 
     void Start()
     {
@@ -16,8 +17,9 @@ public class MovingPlatform : MonoBehaviour
         targetPos = posB.position; // Start by moving towards posB
     }
 
+
     void FixedUpdate()
-    {
+    { 
         // Check if the platform is close to the target position
         if (Vector2.Distance(transform.position, targetPos) < 0.05f)
         {
@@ -34,8 +36,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(this.transform);  // Parent the player to the platform
-            player.GetComponent<PlayerController>().moveSpeed = player.GetComponent<PlayerController>().moveSpeed + 5; // Adjust player's speed if needed
+            playerOnPlatform = true;
         }
     }
 
@@ -43,8 +44,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);  // Unparent the player
-            player.GetComponent<PlayerController>().moveSpeed = 10; // Reset player's speed
+            playerOnPlatform = false;
         }
     }
 
