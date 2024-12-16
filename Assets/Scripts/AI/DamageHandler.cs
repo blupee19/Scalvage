@@ -15,7 +15,8 @@ public class DamageHandler : MonoBehaviour
     {
         if (handEnemyAI != null)
         {
-            handEnemyAI.EnableDamage(); // Enable damage to the player
+            handEnemyAI.EnableDamage();
+            Debug.Log("Damage enabled");// Enable damage to the player
         }
     }
 
@@ -24,7 +25,8 @@ public class DamageHandler : MonoBehaviour
     {
         if (handEnemyAI != null)
         {
-            handEnemyAI.DisableDamage(); // Disable damage to the player
+            handEnemyAI.DisableDamage();
+            Debug.Log("Damage Disable"); // Disable damage to the player
         }
     }
 }
