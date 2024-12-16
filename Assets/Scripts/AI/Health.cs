@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
     public Collider2D enemyCollider;
 
 
-    [SerializeField] private int currentHealth = 10, maxHealth = 10;
+    [SerializeField] public int currentHealth = 10, maxHealth = 10;
     [SerializeField] private bool isDead = false;
     [SerializeField] private float destroyDelay = 2f;
     [SerializeField] private float hitForce = 20f, hitTorque = 2.5f;
@@ -134,5 +134,27 @@ public class Health : MonoBehaviour
     //    // Destroy the instantiated blood particle after 2 seconds
     //    Destroy(instantiatedBlood, 2f);
     //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            currentHealth -= 5;
+
+            if (currentHealth <= 0)
+            {
+                isDead = true;
+
+                //BloodSplash(); // Trigger blood splash on death
+                DisableAI();
+                EnableGravity();
+                Physics2D.IgnoreLayerCollision(10, 11, true);
+                RollAfterDeath(collision.gameObject);
+                AnimationCalls();
+
+                Invoke(nameof(DestroyEnemy), destroyDelay);
+            }
+        }
+    }
 
 }

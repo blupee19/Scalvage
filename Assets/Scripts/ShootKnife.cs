@@ -7,6 +7,10 @@ public class ShootKnife : MonoBehaviour
     public float force;
     private Animator anim;
     private BoxCollider2D boxCollider;
+    private Health health;
+    public Transform circleOrigin;
+    [SerializeField] private float radius = 1.59f;
+
 
     void Start()
     {
@@ -34,10 +38,10 @@ public class ShootKnife : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
+        if (other.gameObject.CompareTag("Enemy"))
+        { 
             Destroy(gameObject);
         }
     }

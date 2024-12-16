@@ -51,7 +51,7 @@ public class HandEnemyHealth : MonoBehaviour
         {
             currentHealth -= amount;
             isHit = true;
-            
+
             if (currentHealth > 0)
             {
                 OnHitWithReference?.Invoke(sender);
@@ -66,9 +66,9 @@ public class HandEnemyHealth : MonoBehaviour
 
                 handCollider.isTrigger = true;
                 Invoke(nameof(DestroyHand), destroyDelay);
-                
 
-            }        
+
+            }
         }
     }
 
@@ -76,5 +76,22 @@ public class HandEnemyHealth : MonoBehaviour
     private void DestroyHand()
     {
         Destroy(HandEnemy);
-    }  
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            currentHealth -= 5;
+
+            if (currentHealth <= 0)
+            {
+                isDead = true;
+
+                //BloodSplash(); // Trigger blood splash on death
+                Physics2D.IgnoreLayerCollision(10, 11, true);
+            }
+        }
+
+    }
 }
