@@ -30,6 +30,8 @@ public class WeaponAttack : MonoBehaviour
     public bool closeAttack {  get; private set; }
     public bool throwAttack { get; private set; }
 
+
+
     private void Awake()
     {
         closeAttackAction = playerControls.FindActionMap("Player").FindAction("Attack");
@@ -81,7 +83,7 @@ public class WeaponAttack : MonoBehaviour
 
         if (closeAttack)
         {
-            weaponAnimator.SetBool("closeAttack", true);
+            weaponAnimator.SetBool("closeAttack", true);            
 
         }
         else
@@ -93,7 +95,7 @@ public class WeaponAttack : MonoBehaviour
         {
             if (throwAttack && cooldownTimer > attackCooldown)
             {
-                ThrowAttack();
+                ThrowAttack();                
             }
         }
 
@@ -119,13 +121,14 @@ public class WeaponAttack : MonoBehaviour
             {
                 health.GetHit(1, transform.parent.gameObject);
             }
-            
+
             //else if(handEnemyHealth = collider.GetComponent<HandEnemyHealth>())
             //{
             //    handEnemyHealth.GetHit(1, transform.parent.gameObject);
             //}
         }
     }
+
 
     public void ThrowAttack()
     {

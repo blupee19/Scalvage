@@ -2410,7 +2410,8 @@ MonoBehaviour:
   posA: {fileID: 1133747127}
   posB: {fileID: 1532007632}
   Speed: 5
-  player: {fileID: 1325848736}
+  playerOnPlatform: 0
+  playerrb: {fileID: 0}
 --- !u!50 &419967801
 Rigidbody2D:
   serializedVersion: 5
@@ -2493,9 +2494,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445029678}
-  m_Layer: 0
+  - component: {fileID: 445029681}
+  - component: {fileID: 445029680}
+  - component: {fileID: 445029679}
+  - component: {fileID: 445029682}
+  m_Layer: 11
   m_Name: HandEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2516,6 +2521,100 @@ Transform:
   - {fileID: 1610937315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445029679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445029677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2d893f2a326994190ede139084a4cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1325848739}
+  speed: 2
+  patrolDistance: 5
+  detectionRadius: 10
+  damage: 1
+--- !u!50 &445029680
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445029677}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 6
+--- !u!70 &445029681
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445029677}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.02, y: 0.45}
+  m_Size: {x: 0.8256084, y: 1.2118909}
+  m_Direction: 0
+--- !u!114 &445029682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445029677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7169a7b5ff7c1a4491918e243ab84a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &472720588
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,10 +4246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1325848739}
   speed: 5
-  increasedSpeed: 5
   patrolDistance: 5
   detectionRadius: 10
-  isEmerging: 0
   damage: 1
 --- !u!61 &697229927
 BoxCollider2D:
@@ -4210,18 +4307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ecf4eb268fda284193a12560851f2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHitWithReference:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDeathWithReference:
-    m_PersistentCalls:
-      m_Calls: []
-  HandEnemy: {fileID: 697229919}
-  handCollider: {fileID: 697229927}
-  currentHealth: 10
-  maxHealth: 10
-  isDead: 0
-  destroyDelay: 2
 --- !u!1 &738858478
 GameObject:
   m_ObjectHideFlags: 0
@@ -7542,6 +7627,11 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!4 &1316871575 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1511504000051467679, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
+  m_PrefabInstance: {fileID: 1073829229648174266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1324792510
 GameObject:
   m_ObjectHideFlags: 0
@@ -9290,9 +9380,9 @@ GameObject:
   - component: {fileID: 1610937315}
   - component: {fileID: 1610937316}
   - component: {fileID: 1610937317}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: HandGFX
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13067,6 +13157,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 4007358972157226093, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
+      propertyPath: circleOrigin
+      value: 
+      objectReference: {fileID: 1316871575}
     - target: {fileID: 7766570258414280399, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
@@ -13111,7 +13205,8 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4007358972157226093, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 466010764773178318, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
