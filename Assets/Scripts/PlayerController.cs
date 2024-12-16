@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public InputActionAsset playerControls;
     public Camera mainCamera;
     public Animator animator;
+    private MovingPlatform platform;
 
     [Header("Action Map Name")]
     private string actionMapName = "Player";
@@ -126,8 +127,6 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
-       
-
         if (IsGrounded())
         {
             //animator.SetBool("isJumping", false);
@@ -135,6 +134,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            
             rb.linearVelocityX = moveDirection.x * moveSpeed * airDrag;
             coyoteTimeCounter -= Time.fixedDeltaTime;
         }
