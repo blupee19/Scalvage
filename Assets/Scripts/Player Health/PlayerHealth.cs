@@ -26,8 +26,7 @@ public class PlayerHealth : MonoBehaviour
         surgeon = GetComponent<SpriteRenderer>();   
         respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>();
         GameObject respawnobj = GameObject.FindGameObjectWithTag("Respawn");
-        if (respawnobj != null) {
-            Debug.Log("Found");
+        if (respawnobj != null) {            
             respawn = respawnobj.GetComponent<Respawn>();  
 
             if(respawn == null)
