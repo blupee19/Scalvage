@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class WeaponAttack : MonoBehaviour
 {
     [Header ("Gameobjects")]
     public GameObject weapon;
@@ -22,7 +22,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private InputAction throwAttackAction;
 
     [Header("Variables")]
-    [SerializeField] private float attackCooldown;
+    [SerializeField] public float attackCooldown;
     [SerializeField] private float throwForce;
     [SerializeField] public float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float offset = 0f;
@@ -127,7 +127,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
-    private void ThrowAttack()
+    public void ThrowAttack()
     {
         weaponAnimator.SetTrigger("throwAttack");
         cooldownTimer = 0;
