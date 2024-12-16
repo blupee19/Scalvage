@@ -155,11 +155,11 @@ public class HandEnemyAI : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && gameObject.CompareTag("Enemy") && canDamage)
+        if (collision.tag == "Player" && canDamage)
         {
+            Debug.Log("damages player");
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
-        }
+        }           
     }
-
    
 }
