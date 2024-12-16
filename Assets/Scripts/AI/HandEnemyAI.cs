@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using System.IO;
+using UnityEngine.Rendering;
 
 
 public class HandEnemyAI : MonoBehaviour
@@ -12,6 +13,7 @@ public class HandEnemyAI : MonoBehaviour
     public float increasedSpeed = 5f;
     public float patrolDistance = 5f;
     public float detectionRadius = 10f;
+    public bool isEmerging = false;
 
     [SerializeField] private int damage = 1;
 
@@ -23,12 +25,14 @@ public class HandEnemyAI : MonoBehaviour
 
     private Rigidbody2D rb;
     private Animator animator;
+    private HandEnemyHealth handEnemyHealth;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         startingPosition = transform.position;
         animator = GetComponentInChildren<Animator>();
+        handEnemyHealth = GetComponent<HandEnemyHealth>();
     }
 
 
@@ -39,27 +43,25 @@ public class HandEnemyAI : MonoBehaviour
         {
             // If the distance to the player is 4 units or less, trigger the animation
             float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(target.position.x, 0f));
-            if (distanceToPlayer <= 5f)
+            if (distanceToPlayer <= 8f)
             {
-                // Start the "NearPlayer" animation
-                AnimationCalls(true);
+                isEmerging = true;
             }
             else
             {
-                // Stop the "NearPlayer" animation if the player moves further
-                AnimationCalls(false);
+                isEmerging = false;
             }
             ChasePlayer();
         }
         else
         {
             // Stop chasing and return to patrol
-            AnimationCalls(false);
             Patrol();
         }
-
+        AnimationCalls();
 
     }
+  
 
     void Patrol()
     {
@@ -117,10 +119,26 @@ public class HandEnemyAI : MonoBehaviour
         rb.linearVelocity = new Vector2(direction * speed, 0f);
     }
 
-    private void AnimationCalls(bool isNearPlayer)
+    public void AnimationCalls()
     {
-        animator.SetBool("NearPlayer", isNearPlayer);
+        // Handle death animation
+        if (handEnemyHealth.isDead)
+        {
+            animator.SetBool("isDead", true);
+            return;
+        }
+
+        // Handle proximity animation
+        float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(target.position.x, 0f));
+        bool isNearPlayer = distanceToPlayer <= 8f;
+           
+
+        if (animator.GetBool("NearPlayer") != isNearPlayer) // Avoid redundant updates
+        {
+            animator.SetBool("NearPlayer", isNearPlayer);
+        }
     }
+
 
 
     private void OnDrawGizmosSelected()
@@ -140,4 +158,6 @@ public class HandEnemyAI : MonoBehaviour
             collision.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
+
+   
 }

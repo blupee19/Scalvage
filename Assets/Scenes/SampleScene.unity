@@ -3615,6 +3615,7 @@ MonoBehaviour:
   increasedSpeed: 5
   patrolDistance: 5
   detectionRadius: 10
+  isEmerging: 0
   damage: 1
 --- !u!61 &697229927
 BoxCollider2D:
@@ -3650,7 +3651,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.46}
+  m_Offset: {x: -0.0039122403, y: 0.4815178}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3660,7 +3661,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.95}
+  m_Size: {x: 0.92175394, y: 0.99303555}
   m_EdgeRadius: 0
 --- !u!114 &697229928
 MonoBehaviour:
@@ -3686,7 +3687,6 @@ MonoBehaviour:
   maxHealth: 10
   isDead: 0
   destroyDelay: 2
-  hitForce: 20
 --- !u!1 &738858478
 GameObject:
   m_ObjectHideFlags: 0
@@ -4958,7 +4958,7 @@ Transform:
   m_GameObject: {fileID: 1080832039}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: -0.006, y: 0.467, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5008,7 +5008,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4682887529631355302, guid: 16052ce1a5734394ab14a47a550693d5, type: 3}
+  m_Sprite: {fileID: -1771715482956005796, guid: 9c4516fcf73d2854e83390a25ae1a52e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
