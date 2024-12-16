@@ -6,10 +6,12 @@ public class ShootKnife : MonoBehaviour
     private Rigidbody2D rb;
     public float force;
     private Animator anim;
+    private BoxCollider2D boxCollider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
 
         // Get the current mouse position when the knife is instantiated
@@ -30,5 +32,13 @@ public class ShootKnife : MonoBehaviour
     void Update()
     {
         Destroy(gameObject, 5);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

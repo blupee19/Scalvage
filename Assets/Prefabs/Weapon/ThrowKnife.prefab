@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8973808035628860095}
   - component: {fileID: 1280243833702397772}
   - component: {fileID: 2782631098825195614}
-  - component: {fileID: -4922138562455641503}
   - component: {fileID: 7604437282951165517}
   m_Layer: 0
   m_Name: ThrowKnife
@@ -131,28 +130,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!95 &-4922138562455641503
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904927492980442182}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 83e5b5c52d0410541a31f4048907c2db, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &7604437282951165517
 BoxCollider2D:
   m_ObjectHideFlags: 0
