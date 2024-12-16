@@ -19,26 +19,12 @@ public class PlayerHealth : MonoBehaviour
 
     private Respawn respawn;
 
-    private void Start()
+    private void Awake()
     {
         currentHealth = startingHealth;
         surgeonAnim = GetComponent<Animator>();
-        surgeon = GetComponent<SpriteRenderer>();   
+        surgeon = GetComponent<SpriteRenderer>();
         respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>();
-        GameObject respawnobj = GameObject.FindGameObjectWithTag("Respawn");
-        if (respawnobj != null) {
-            Debug.Log("Found");
-            respawn = respawnobj.GetComponent<Respawn>();  
-
-            if(respawn == null)
-            {
-                Debug.LogError("respwan comp not forund");
-            }
-        }else
-        {
-            Debug.LogError("not foubd");
-        }
-        
     }
 
     public void Update()

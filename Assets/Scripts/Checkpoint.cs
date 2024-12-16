@@ -7,13 +7,13 @@ public class Checkpoint : MonoBehaviour
 
     void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
-        respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>();       
+        boxCollider = GetComponent<BoxCollider2D>();   
+        respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             respawn.respawnPoint = this.gameObject;
             boxCollider.enabled = false;
