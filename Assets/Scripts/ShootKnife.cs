@@ -34,7 +34,7 @@ public class ShootKnife : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
