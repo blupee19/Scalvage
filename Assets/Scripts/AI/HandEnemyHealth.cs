@@ -60,14 +60,14 @@ public class HandEnemyHealth : MonoBehaviour
             {
                 OnDeathWithReference?.Invoke(sender);
                 isDead = true;
+                handEnemyAI.enabled = false;
                 handEnemyAI.AnimationCalls();
+
+
+                handCollider.isTrigger = true;
+                Invoke(nameof(DestroyHand), destroyDelay);
                 
 
-                handEnemyAI.enabled = false;
-                handCollider.isTrigger = false;
-
-                Invoke(nameof(DestroyHand), destroyDelay);
-                handEnemyAI.enabled = false;
             }        
         }
     }

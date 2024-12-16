@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Pathfinding;
 using System.IO;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 
 public class HandEnemyAI : MonoBehaviour
@@ -125,6 +126,7 @@ public class HandEnemyAI : MonoBehaviour
         if (handEnemyHealth.isDead)
         {
             animator.SetBool("isDead", true);
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
