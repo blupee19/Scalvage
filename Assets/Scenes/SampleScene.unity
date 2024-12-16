@@ -12749,6 +12749,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 904927492980442182, guid: d8239364a4ef51d42894900ca93734e0, type: 3}
     - target: {fileID: 3354195308737322373, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
+      propertyPath: radius
+      value: 1.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354195308737322373, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 1706943556}
