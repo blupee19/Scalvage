@@ -135,12 +135,12 @@ TextureImporter:
       name: hand_destroy(8)_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 6
         y: 6
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 91
+        height: 22
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -153,55 +153,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: hand_destroy(8)_1
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 6
-        width: 78
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 293fcb50dce214c50800000000000000
-      internalID: 6647645983075005330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: hand_destroy(8)_2
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 6
-        width: 16
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 27c14ebbd12c07670800000000000000
-      internalID: 8534534726829218930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d647e002bcfe8994ca0e95b636407c43
     internalID: 0
     vertices: []
     indices: 

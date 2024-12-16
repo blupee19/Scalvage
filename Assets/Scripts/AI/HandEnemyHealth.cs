@@ -8,16 +8,18 @@ public class HandEnemyHealth : MonoBehaviour
     public Collider2D handCollider;  // Collider of the hand enemy
 
     [SerializeField] private int currentHealth = 20, maxHealth = 20;
-    [SerializeField] private bool isDead = false;
+    [SerializeField] public bool isDead = false;
     [SerializeField] private float destroyDelay = 2f;
-    [SerializeField] private float hitForce = 20f;  // The recoil force when hit
+    private bool isHit = false;// The recoil force when hit
     private Rigidbody2D rb;  // Rigidbody for applying forces    
-    private HandEnemyAI handEnemyAI;  // Reference to the HandEnemyAI script
+    private HandEnemyAI handEnemyAI;
+    private Animator animator;// Reference to the HandEnemyAI script
 
     void Start()
     {
         rb = HandEnemy.GetComponent<Rigidbody2D>();
         handEnemyAI = GetComponent<HandEnemyAI>();
+        animator = GetComponent<Animator>();
     }
 
     public void InitializeHealth(int healthValue)
@@ -48,10 +50,8 @@ public class HandEnemyHealth : MonoBehaviour
         if (handEnemyAI.isEmerging)
         {
             currentHealth -= amount;
-            ApplyRecoil(sender);
+            isHit = true;
             
-
-
             if (currentHealth > 0)
             {
                 OnHitWithReference?.Invoke(sender);
@@ -60,13 +60,15 @@ public class HandEnemyHealth : MonoBehaviour
             {
                 OnDeathWithReference?.Invoke(sender);
                 isDead = true;
+                handEnemyAI.AnimationCalls();
+                
 
                 handEnemyAI.enabled = false;
                 handCollider.isTrigger = false;
 
                 Invoke(nameof(DestroyHand), destroyDelay);
-            }
-        
+                handEnemyAI.enabled = false;
+            }        
         }
     }
 
@@ -74,22 +76,5 @@ public class HandEnemyHealth : MonoBehaviour
     private void DestroyHand()
     {
         Destroy(HandEnemy);
-    }
-
-    //private void DisableAI()
-    //{
-    //    handEnemyAI.enabled = false;
-    //}
-    
-
-    private void ApplyRecoil(GameObject sender)
-    {
-        handEnemyAI.enabled = false;
-        Vector2 hitDirection = (HandEnemy.transform.position - sender.transform.position).normalized;
-          
-        rb.AddForce(hitDirection * hitForce * 2, ForceMode2D.Impulse);
-        
-        Debug.Log("Recoil Applied");
-        handEnemyAI.enabled = true;
-    }
+    }  
 }
