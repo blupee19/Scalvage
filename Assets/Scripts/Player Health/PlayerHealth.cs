@@ -49,7 +49,6 @@ public class PlayerHealth : MonoBehaviour
                 
                 dead = true;
                 RespawnPlayer();
-                currentHealth = startingHealth;
                 
             }
         }
@@ -93,8 +92,6 @@ public class PlayerHealth : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        dead = false;
-
         if (respawn.respawnPoint != null)
         {
             Debug.Log($"Respawning player at checkpoint: {respawn.respawnPoint.name}");
@@ -104,5 +101,9 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogWarning("No respawn point set! Ensure the player has triggered a checkpoint.");
         }
+
+        currentHealth = startingHealth; // Reset health after moving to the respawn point
+        dead = false; // Mark the player as alive
     }
+
 }
