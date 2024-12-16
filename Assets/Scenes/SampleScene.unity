@@ -4729,7 +4729,7 @@ Transform:
   m_GameObject: {fileID: 816366296}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.7, y: -64.1, z: 0}
   m_LocalScale: {x: -36.261456, y: -36.261456, z: -36.261456}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4769,7 +4769,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 2.193028, y: 0.01777856}
+  m_Offset: {x: 1.5666199, y: -0.45287368}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4779,7 +4779,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.923811, y: 1.035557}
+  m_Size: {x: 11.512941, y: 0.09425241}
   m_EdgeRadius: 0
 --- !u!114 &816366299
 MonoBehaviour:
@@ -4794,7 +4794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1325848736}
-  respawnPoint: {fileID: 1594955053}
+  respawnPoint: {fileID: 1479032986}
 --- !u!1 &821379160
 GameObject:
   m_ObjectHideFlags: 0
@@ -14642,7 +14642,7 @@ PrefabInstance:
     - target: {fileID: 6551750273224972772, guid: 727fa695febd104498fa46f67eea953a, type: 3}
       propertyPath: respawnPoint
       value: 
-      objectReference: {fileID: 1594955053}
+      objectReference: {fileID: 1479032986}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
