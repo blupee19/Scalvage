@@ -2187,7 +2187,7 @@ GameObject:
   - component: {fileID: 419967800}
   - component: {fileID: 419967802}
   m_Layer: 6
-  m_Name: main_lev_build_76
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2324,6 +2324,7 @@ MonoBehaviour:
   posA: {fileID: 1133747127}
   posB: {fileID: 1532007632}
   Speed: 5
+  player: {fileID: 1325848736}
 --- !u!50 &419967801
 Rigidbody2D:
   serializedVersion: 5
@@ -2361,7 +2362,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4d7eba28a10d9064085e4d5ca5819306, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2385,7 +2386,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.052878663, y: -0.005397022}
+  m_Offset: {x: 0.052878663, y: -0.007383883}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2395,7 +2396,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.10222641, y: 1.4403588}
+  m_Size: {x: 0.10222641, y: 1.4178411}
   m_EdgeRadius: 0
 --- !u!1 &472720588
 GameObject:
@@ -8656,7 +8657,7 @@ Transform:
   m_GameObject: {fileID: 1532007631}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.38, y: -5.74, z: 0}
+  m_LocalPosition: {x: 7.38, y: -5.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
