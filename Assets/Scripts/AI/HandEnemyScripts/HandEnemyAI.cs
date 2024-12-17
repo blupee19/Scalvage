@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 public class HandEnemyAI : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] public Transform target;
     [SerializeField] private float speed = 2f;
     [SerializeField] private float patrolDistance = 5f;
     [SerializeField] private float detectionRadius = 10f;
