@@ -7,7 +7,7 @@ public class ShootKnife : MonoBehaviour
     public float force;
     private Animator anim;
     private BoxCollider2D boxCollider;
-    private Health health;
+    //private Health health;
     public Transform circleOrigin;
     [SerializeField] private float radius = 1.59f;
 
