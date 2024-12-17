@@ -119,6 +119,6 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth = startingHealth; // Reset health after moving to the respawn point
         dead = false; // Mark the player as alive
-    }
+    }   
 
 }

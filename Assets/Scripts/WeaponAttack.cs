@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class WeaponAttack : MonoBehaviour
 {
-    [Header ("Gameobjects")]
+    [Header("Gameobjects")]
     public GameObject weapon;
     public GameObject weaponHolder;
     public GameObject knife;
@@ -27,7 +27,7 @@ public class WeaponAttack : MonoBehaviour
     [SerializeField] public float cooldownTimer = Mathf.Infinity;
     [SerializeField] private float offset = 0f;
     [SerializeField] private float radius = 1.59f;
-    public bool closeAttack {  get; private set; }
+    public bool closeAttack { get; private set; }
     public bool throwAttack { get; private set; }
 
 
@@ -36,7 +36,7 @@ public class WeaponAttack : MonoBehaviour
     {
         closeAttackAction = playerControls.FindActionMap("Player").FindAction("Attack");
         throwAttackAction = playerControls.FindActionMap("Player").FindAction("Throw");
-        
+
         closeAttackAction.performed += context => closeAttack = true;
         closeAttackAction.canceled += context => closeAttack = false;
 
@@ -76,14 +76,14 @@ public class WeaponAttack : MonoBehaviour
         {
             weapon.GetComponent<SpriteRenderer>().flipY = true;
         }
-        else 
+        else
         {
             weapon.GetComponent<SpriteRenderer>().flipY = false;
         }
 
         if (closeAttack)
         {
-            weaponAnimator.SetBool("closeAttack", true);            
+            weaponAnimator.SetBool("closeAttack", true);
 
         }
         else
@@ -95,7 +95,7 @@ public class WeaponAttack : MonoBehaviour
         {
             if (throwAttack && cooldownTimer > attackCooldown)
             {
-                ThrowAttack();                
+                ThrowAttack();
             }
         }
 
@@ -110,25 +110,6 @@ public class WeaponAttack : MonoBehaviour
         Gizmos.DrawWireSphere(position, radius);
     }
 
-    public void DetectColliders()
-    {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
-        {
-            //Debug.Log(collider.name);
-            Health health;
-            //HandEnemyHealth handEnemyHealth;
-            if (health = collider.GetComponent<Health>())
-            {
-                health.GetHit(1, transform.parent.gameObject);
-            }
-
-            //else if(handEnemyHealth = collider.GetComponent<HandEnemyHealth>())
-            //{
-            //    handEnemyHealth.GetHit(1, transform.parent.gameObject);
-            //}
-        }
-    }
-
 
     public void ThrowAttack()
     {
@@ -137,7 +118,25 @@ public class WeaponAttack : MonoBehaviour
         Instantiate(knife, firePoint.position, Quaternion.identity);
     }
 
+    public void DetectColliders()
+    {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
+        {
+            Debug.Log(collider.name);
+            Health health;
+            EnemyBaseHealth enemyHealth;
+            if (health = collider.GetComponent<Health>())
+            {
+                health.GetHit(1, transform.parent.gameObject);
+            }
 
+            if(enemyHealth = collider.GetComponent<EnemyBaseHealth>())
+            {
+                enemyHealth.GetHit(1, transform.parent.gameObject);
+
+            }
+        }
+    }
 }
 
 
