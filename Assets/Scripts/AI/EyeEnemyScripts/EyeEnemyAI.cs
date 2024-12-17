@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 public class EyeEnemyA1 : MonoBehaviour
 {
     public Transform target;
-    public float speed = 200f;
+    public float speed = 2000f;
     public float nextWaypointDistance = 3f;
     public float detectionRadius = 10f;
 
@@ -19,8 +19,7 @@ public class EyeEnemyA1 : MonoBehaviour
     bool reachedEndOfPath = false;
     bool targetDetected = false;
 
-    [SerializeField] private int damage = 1;
-
+    
     Seeker seeker;
     Rigidbody2D rb;
     void Start()
@@ -51,18 +50,18 @@ public class EyeEnemyA1 : MonoBehaviour
         }
     }
     void OnPathComplete(Pathfinding.Path p)
-     {
+    {
         if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
         }
-     }
+    }
 
     void FixedUpdate()
     {
-        if (targetDetected);
-        Follow();
+        if (targetDetected)
+            Follow();
     }
 
     void Follow()
@@ -80,7 +79,7 @@ public class EyeEnemyA1 : MonoBehaviour
         }
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
+        Vector2 force = direction * speed * 2 * Time.deltaTime;
 
         rb.AddForce(force);
 
@@ -92,14 +91,13 @@ public class EyeEnemyA1 : MonoBehaviour
         }
 
         //Flip the enemy sprite based on movement direction
-        if(force.x >= 0.01f)
+        if (force.x >= 0.01f)
         {
-            eyeGFX.localScale = new Vector3(-1f, 1f, 1f);
+            eyeGFX.localScale = new Vector3(-Mathf.Abs(eyeGFX.localScale.x), eyeGFX.localScale.y, eyeGFX.localScale.z);
         }
-
-        else if(force.x <= -0.01f)
+        else if (force.x <= -0.01f)
         {
-            eyeGFX.localScale = new Vector3(1f, 1f, 1f);
+            eyeGFX.localScale = new Vector3(Mathf.Abs(eyeGFX.localScale.x), eyeGFX.localScale.y, eyeGFX.localScale.z);
         }
     }
 
@@ -108,12 +106,5 @@ public class EyeEnemyA1 : MonoBehaviour
         // Draw the detection radius in the scene view for debugging
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
-
-    }
+    }    
 }

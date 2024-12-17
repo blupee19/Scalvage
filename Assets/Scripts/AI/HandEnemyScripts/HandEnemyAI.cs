@@ -94,5 +94,4 @@ public class HandEnemyAI : MonoBehaviour
         Gizmos.DrawLine(new Vector2(transform.position.x - patrolDistance, transform.position.y),
                         new Vector2(transform.position.x + patrolDistance, transform.position.y));
     }
-
 }
