@@ -6,7 +6,7 @@ public class EnemyBaseHealth : MonoBehaviour
     [SerializeField] protected int maxHealth = 10;
     protected int currentHealth;
     protected bool isDead = false;
-    protected bool canDamage = false;
+    public bool canDamage = false;
 
     private HandEnemyAI handEnemy;   
     private Animator animator;
@@ -84,6 +84,6 @@ public class EnemyBaseHealth : MonoBehaviour
                 Die();            
         }
         
-    }
+    }   
 
 }
