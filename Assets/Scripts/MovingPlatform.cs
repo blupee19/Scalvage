@@ -19,9 +19,9 @@ public class MovingPlatform : MonoBehaviour
 
 
     void FixedUpdate()
-    { 
+    {
         // Check if the platform is close to the target position
-        if (Vector2.Distance(transform.position, targetPos) < 0.05f)
+        if (Vector2.Distance(transform.position, targetPos) < 0.1f)
         {
             // Toggle the target position when the platform reaches it
             targetPos = targetPos == (Vector2)posA.position ? posB.position : posA.position;
