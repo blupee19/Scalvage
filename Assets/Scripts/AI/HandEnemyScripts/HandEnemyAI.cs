@@ -12,8 +12,7 @@ public class HandEnemyAI : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float patrolDistance = 5f;
     [SerializeField] private float detectionRadius = 10f;
-    [SerializeField] private int damage = 1;
-
+    
     private bool targetDetected = false;
     private bool movingRight = true;
 
@@ -80,6 +79,11 @@ public class HandEnemyAI : MonoBehaviour
         //Move towards the player's position on X-axis
         float direction = Mathf.Sign(target.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * speed, 0f);
+
+        if(target.position.x == transform.position.x)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
     private void OnDrawGizmosSelected()

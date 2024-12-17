@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyBaseHealth : MonoBehaviour
 {
+    public UnityEvent<GameObject> OnHitWithReference, OnDeathWithReference;
     [SerializeField] protected int maxHealth = 20;
     protected int currentHealth;
     protected bool isDead = false;
@@ -12,7 +14,7 @@ public class EnemyBaseHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} initialized with {currentHealth} health.");
     }
 
-    public virtual void TakeDamage(int damage, GameObject sender)
+    public virtual void GetHit(int damage, GameObject sender)
     {
         if (isDead) return;
 
@@ -21,10 +23,12 @@ public class EnemyBaseHealth : MonoBehaviour
         currentHealth -= damage;
         if (currentHealth > 0)
         {
+            OnHitWithReference?.Invoke(sender);
             OnHit(sender);
         }
         else
         {
+            OnDeathWithReference?.Invoke(sender);
             Die();
         }
     }
@@ -40,4 +44,15 @@ public class EnemyBaseHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} has died!");
         Destroy(gameObject, 2f);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collided with: " + collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+        }
+    }
+
+
 }
