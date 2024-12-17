@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovingTrap : MonoBehaviour
 {
     public Transform posA, posB;
-    public float speed = 2f; // Set a default speed
+    public float speed = 7f; // Set a default speed
     private Vector2 targetPos;
 
     // Start is called before the first frame update

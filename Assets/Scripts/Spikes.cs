@@ -5,10 +5,12 @@ public class Spikes : MonoBehaviour
     private PlayerHealth health; // Reference to the PlayerHealth component
     public GameObject player; // Assign this in the inspector
     public Transform respawn; // Assign the respawn point in the inspector
+    public Respawn checkpoint;
 
     // Start is called before the first frame update
     private void Start()
     {
+
         // Ensure the PlayerHealth component is fetched from the player GameObject
         if (player != null)
         {
@@ -20,6 +22,7 @@ public class Spikes : MonoBehaviour
             Debug.LogError("PlayerHealth component not found on the player object!");
         }
     }
+
 
     // Trigger detection
     private void OnTriggerEnter2D(Collider2D other)
@@ -36,15 +39,24 @@ public class Spikes : MonoBehaviour
                 Debug.LogError("PlayerHealth reference is missing!");
             }
 
-            // Move player to the respawn position
-            if (respawn != null)
-            {
-                player.transform.position = respawn.position;
+            
+            if (health.currentHealth > 0)
+            { 
+                if (respawn != null)
+                {
+                    player.transform.position = checkpoint.respawnPoint.transform.position;
+
+                }
+                else
+                {
+                    Debug.LogError("Respawn point is not assigned!");
+                }
             }
             else
             {
-                Debug.LogError("Respawn point is not assigned!");
+                health.RespawnPlayer();
             }
+
         }
     }
 }
