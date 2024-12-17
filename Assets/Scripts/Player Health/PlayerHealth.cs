@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.Utilities;
 
 public class PlayerHealth : MonoBehaviour
@@ -35,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
             }
         }else
         {
-            Debug.LogError("not foubd");
+            Debug.LogError("not found");
         }
         
     }
@@ -61,7 +62,8 @@ public class PlayerHealth : MonoBehaviour
             { 
                 
                 dead = true;
-                RespawnPlayer();
+                //RespawnPlayer();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 
             }
         }
