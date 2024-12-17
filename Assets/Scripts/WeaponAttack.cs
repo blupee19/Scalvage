@@ -123,12 +123,12 @@ public class WeaponAttack : MonoBehaviour
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
             Debug.Log(collider.name);
-            Health health;
+            //Health health;
             EnemyBaseHealth enemyHealth;
-            if (health = collider.GetComponent<Health>())
-            {
-                health.GetHit(1, transform.parent.gameObject);
-            }
+            //if (health = collider.GetComponent<Health>())
+            //{
+            //    health.GetHit(1, transform.parent.gameObject);
+            //}
 
             if(enemyHealth = collider.GetComponent<EnemyBaseHealth>())
             {

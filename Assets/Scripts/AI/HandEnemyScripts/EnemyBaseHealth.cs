@@ -8,13 +8,15 @@ public class EnemyBaseHealth : MonoBehaviour
     protected bool isDead = false;
     protected bool canDamage = false;
 
+    private HandEnemyAI handEnemy;   
     private Animator animator;
-
+    private float animationStartRadius = 8f;
     void Start()
     {
         currentHealth = maxHealth;
         Debug.Log($"{gameObject.name} initialized with {currentHealth} health.");
         animator = GetComponentInChildren<Animator>();
+        handEnemy = GetComponent<HandEnemyAI>();
     }
 
     void Update()
@@ -62,17 +64,14 @@ public class EnemyBaseHealth : MonoBehaviour
 
     void AnimationCalls()
     {
-        HandEnemyAI handEnemy;
-        handEnemy = GetComponent<HandEnemyAI>();
-        if(handEnemy.target.position.x - transform.position.x <= 8f)
-        {
+        if (Vector2.Distance(new Vector2(transform.position.x, 0f), new Vector2(handEnemy.target.position.x, 0f)) <= animationStartRadius) 
+        { 
             canDamage = true;
             animator.SetBool("isNearPlayer", canDamage);
         }
         else
         {
-            canDamage = false;
-            animator.SetBool("isNearPlayer", canDamage);
+            animator.SetBool("isNearPlayer", false);
         }
 
         if (isDead)
