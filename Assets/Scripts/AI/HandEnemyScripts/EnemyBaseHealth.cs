@@ -83,6 +83,10 @@ public class EnemyBaseHealth : MonoBehaviour
             if (currentHealth <= 0) 
                 Die();            
         }
+        if (isDead)
+        {
+            collision.enabled = false;
+        }
         
     }   
 
