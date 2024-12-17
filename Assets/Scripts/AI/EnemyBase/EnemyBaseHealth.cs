@@ -52,7 +52,7 @@ public class EnemyBaseHealth : MonoBehaviour
     {
         isDead = true;
         Debug.Log($"{gameObject.name} has died!");
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 1f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -69,6 +69,7 @@ public class EnemyBaseHealth : MonoBehaviour
         if (isDead)
         {
             animator.SetBool("isDead", true);
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
     }
 
@@ -82,11 +83,7 @@ public class EnemyBaseHealth : MonoBehaviour
             currentHealth -= 5;
             if (currentHealth <= 0) 
                 Die();            
-        }
-        if (isDead)
-        {
-            collision.enabled = false;
-        }
+        }       
         
     }   
 

@@ -134,10 +134,10 @@ TextureImporter:
         serializedVersion: 2
         x: 5
         y: 6
-        width: 22
-        height: 16
+        width: 66
+        height: 81
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -150,33 +150,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: leg_destroy(1)_1
-      rect:
-        serializedVersion: 2
-        x: 26
-        y: 6
-        width: 45
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8632bfc72db3b3fd0800000000000000
-      internalID: -2361227804399688856
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8fc08280dc86c164f87ef8f1d54ebba0
     internalID: 0
     vertices: []
     indices: 
