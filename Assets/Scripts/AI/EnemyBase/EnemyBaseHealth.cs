@@ -8,7 +8,7 @@ public class EnemyBaseHealth : MonoBehaviour
     protected bool isDead = false;
     public bool canDamage = false;
 
-    private HandEnemyAI handEnemy;   
+    private AIEnemyBase enemy;   
     private Animator animator;
     
     [SerializeField] private int damage = 5;
@@ -18,7 +18,7 @@ public class EnemyBaseHealth : MonoBehaviour
         currentHealth = maxHealth;
         Debug.Log($"{gameObject.name} initialized with {currentHealth} health.");
         animator = GetComponentInChildren<Animator>();
-        handEnemy = GetComponent<HandEnemyAI>(); 
+        enemy = GetComponent<AIEnemyBase>(); 
     }
 
     void Update()

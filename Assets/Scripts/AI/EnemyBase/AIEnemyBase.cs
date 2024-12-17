@@ -6,7 +6,7 @@ using System.IO;
 using JetBrains.Annotations;
 using System.Linq.Expressions;
 
-public class HandEnemyAI : MonoBehaviour
+public class AIEnemyBase : MonoBehaviour
 {
     [SerializeField] public Transform target;
     [SerializeField] private float speed = 2f;
@@ -25,6 +25,7 @@ public class HandEnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Flip();
         DetectPlayer();
         if (targetDetected)
         {
@@ -93,5 +94,10 @@ public class HandEnemyAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(new Vector2(transform.position.x - patrolDistance, transform.position.y),
                         new Vector2(transform.position.x + patrolDistance, transform.position.y));
+    }
+
+    public virtual void Flip()
+    {
+
     }
 }
