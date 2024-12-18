@@ -9,17 +9,20 @@ using System.Linq.Expressions;
 public class AIEnemyBase : MonoBehaviour
 {
     [SerializeField] public Transform target;
-    [SerializeField] private float speed = 2f;
-    [SerializeField] private float patrolDistance = 5f;
+    [SerializeField] public float speed = 2f;
+    [SerializeField] public float patrolDistance = 5f;
     [SerializeField] private float detectionRadius = 10f;
     private bool targetDetected = false;
-    private bool movingRight = true;
+    public bool movingRight = true;
 
     private Rigidbody2D rb;
-   
+    public Vector2 startingPosition;
+
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
+        startingPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -37,11 +40,12 @@ public class AIEnemyBase : MonoBehaviour
         }
     }
 
-    void Patrol()
+    public virtual void Patrol()
     {
         //Determining the patrol bounds 
-        float leftBound = transform.position.x - patrolDistance;
-        float rightBound = transform.position.x + patrolDistance;
+        float leftBound = startingPosition.x - patrolDistance;
+        float rightBound = startingPosition.x + patrolDistance;
+        float rotationAmount = 2f * 360 * Time.deltaTime;
 
         //move in the current direction
         if (movingRight)
@@ -74,7 +78,7 @@ public class AIEnemyBase : MonoBehaviour
         }
     }
 
-    void ChasePlayer()
+    public virtual void ChasePlayer()
     {
         //Move towards the player's position on X-axis
         float direction = Mathf.Sign(target.position.x - transform.position.x);
@@ -92,8 +96,8 @@ public class AIEnemyBase : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawLine(new Vector2(transform.position.x - patrolDistance, transform.position.y),
-                        new Vector2(transform.position.x + patrolDistance, transform.position.y));
+        Gizmos.DrawLine(new Vector2(startingPosition.x - patrolDistance, transform.position.y),
+                        new Vector2(startingPosition.x + patrolDistance, transform.position.y));
     }
 
     public virtual void Flip()
