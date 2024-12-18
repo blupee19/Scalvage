@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Projectile
   - Ground
+  - Audio
   layers:
   - Default
   - TransparentFX

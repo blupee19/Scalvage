@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class WeaponAttack : MonoBehaviour
 {
     [Header("Gameobjects")]
+    AudioManager audioManager;
     public GameObject weapon;
     public GameObject weaponHolder;
     public GameObject knife;
@@ -84,7 +85,6 @@ public class WeaponAttack : MonoBehaviour
         if (closeAttack)
         {
             weaponAnimator.SetBool("closeAttack", true);
-
         }
         else
         {
@@ -116,6 +116,7 @@ public class WeaponAttack : MonoBehaviour
         weaponAnimator.SetTrigger("throwAttack");
         cooldownTimer = 0;
         Instantiate(knife, firePoint.position, Quaternion.identity);
+        
     }
 
     public void DetectColliders()

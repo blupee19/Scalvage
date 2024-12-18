@@ -2,9 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Rendering;
 
 public class PlayerHealth : MonoBehaviour
 {
+    AudioManager audioManager;
+
     [Header("Health")]
     [SerializeField] private GameObject player;
     [SerializeField] private float startingHealth;
@@ -19,6 +22,11 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer surgeon;
 
     private Respawn respawn;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -52,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            audioManager.PlaySFX(audioManager.playerHurt);
             StartCoroutine(Invulnerability());
             StartCoroutine(Shake(0.2f, 0.3f));
 
@@ -62,29 +71,14 @@ public class PlayerHealth : MonoBehaviour
             { 
                 
                 dead = true;
-                surgeonAnim.SetBool("isDead", true);
+                audioManager.PlaySFX(audioManager.playerDeath);
+
                 //RespawnPlayer();
-                StartCoroutine(WaitForDeathAnimation());
-                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 
             }
         }
     }
-
-    private IEnumerator WaitForDeathAnimation()
-    {
-        while (!surgeonAnim.GetCurrentAnimatorStateInfo(0).IsName("doc_dead_anim"))
-        {
-            yield return null; // Wait until the death animation starts
-        }
-
-        // Wait for the animation to finish
-        yield return new WaitForSeconds(surgeonAnim.GetCurrentAnimatorStateInfo(0).length);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-
 
 
     public IEnumerator Shake(float duration, float magnitude)
