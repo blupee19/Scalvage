@@ -140,7 +140,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.8, y: 2.16, z: 0}
-  m_LocalScale: {x: 5.6139, y: 5.6139, z: 5.6139}
+  m_LocalScale: {x: 4.261732, y: 4.261732, z: 4.261732}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1543485000303193159}
@@ -207,7 +207,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0012144446, y: -0.0866371}
+  m_Offset: {x: 0.017503679, y: 0.009503335}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -217,7 +217,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.49237102, y: 0.57898337}
+  m_Size: {x: 0.6536646, y: 0.8022285}
   m_EdgeRadius: 0
 --- !u!114 &834630758873106693
 MonoBehaviour:
@@ -231,10 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ced8547841a0924b9fc767112d0c3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 7766570258414280399, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
   speed: 2
-  patrolDistance: 5
-  detectionRadius: 10
+  patrolDistance: 15
+  detectionRadius: 25
+  avoidRadius: 1.5
   movingRight: 1
   startingPosition: {x: 0, y: 0}
   LegGFX: {fileID: 1543485000303193159}

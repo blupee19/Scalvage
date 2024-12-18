@@ -62,12 +62,29 @@ public class PlayerHealth : MonoBehaviour
             { 
                 
                 dead = true;
+                surgeonAnim.SetBool("isDead", true);
                 //RespawnPlayer();
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                StartCoroutine(WaitForDeathAnimation());
+                //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 
             }
         }
     }
+
+    private IEnumerator WaitForDeathAnimation()
+    {
+        while (!surgeonAnim.GetCurrentAnimatorStateInfo(0).IsName("doc_dead_anim"))
+        {
+            yield return null; // Wait until the death animation starts
+        }
+
+        // Wait for the animation to finish
+        yield return new WaitForSeconds(surgeonAnim.GetCurrentAnimatorStateInfo(0).length);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+
 
 
     public IEnumerator Shake(float duration, float magnitude)

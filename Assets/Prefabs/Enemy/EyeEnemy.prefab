@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6358471716827776280}
   - component: {fileID: 2316038317517168429}
   m_Layer: 11
-  m_Name: EnemyGFX
+  m_Name: EyeGFX
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,11 +250,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e4d6df891aadc647b88ed011fcf8b57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 7766570258414280399, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
   speed: 1500
   nextWaypointDistance: 5
-  detectionRadius: 10
+  detectionRadius: 25
   eyeGFX: {fileID: 2299262013775362870}
+  avoidRadius: 1.5
 --- !u!114 &4736574464820220077
 MonoBehaviour:
   m_ObjectHideFlags: 0

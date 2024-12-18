@@ -10,8 +10,9 @@ public class AIEnemyBase : MonoBehaviour
 {
     [SerializeField] public Transform target;
     [SerializeField] public float speed = 2f;
-    [SerializeField] public float patrolDistance = 5f;
-    [SerializeField] private float detectionRadius = 10f;
+    [SerializeField] public float patrolDistance = 15f;
+    [SerializeField] private float detectionRadius = 25f;
+    [SerializeField] private float avoidRadius = 1.5f;
     private bool targetDetected = false;
     public bool movingRight = true;
 
@@ -28,6 +29,7 @@ public class AIEnemyBase : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        AvoidOtherEnemies();
         Flip();
         DetectPlayer();
         if (targetDetected)
@@ -103,5 +105,18 @@ public class AIEnemyBase : MonoBehaviour
     public virtual void Flip()
     {
 
+    }
+
+    private void AvoidOtherEnemies()
+    {
+        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, avoidRadius);
+        foreach (var enemy in nearbyEnemies)
+        {
+            if (enemy.gameObject != gameObject && enemy.CompareTag("Enemy"))
+            {
+                Vector2 avoidDirection = (transform.position - enemy.transform.position).normalized;
+                rb.linearVelocity += avoidDirection * speed * Time.deltaTime; // Move slightly away
+            }
+        }
     }
 }

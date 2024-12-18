@@ -140,7 +140,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.47, y: 1.7, z: 0}
-  m_LocalScale: {x: 3.5986, y: 3.5986, z: 3.5986}
+  m_LocalScale: {x: 2.739794, y: 2.739794, z: 2.739794}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4521675104016943958}
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -221,10 +221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bf252702ae57ee44a725ba71ed93935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 7766570258414280399, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
   speed: 2
-  patrolDistance: 5
-  detectionRadius: 10
+  patrolDistance: 15
+  detectionRadius: 25
+  avoidRadius: 1.5
   movingRight: 1
   startingPosition: {x: 0, y: 0}
   rotationSpeed: 200

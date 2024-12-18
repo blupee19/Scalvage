@@ -291,7 +291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 213f31e4788710b4b98217a06a22d330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 7766570258414280399, guid: 75cc2ad4e66cb814f9524d0a235418e9, type: 3}
   speed: 2
-  patrolDistance: 5
-  detectionRadius: 10
+  patrolDistance: 15
+  detectionRadius: 25
+  avoidRadius: 1.5
+  movingRight: 1
+  startingPosition: {x: 0, y: 0}

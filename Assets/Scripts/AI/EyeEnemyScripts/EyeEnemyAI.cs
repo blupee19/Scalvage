@@ -10,7 +10,7 @@ public class EyeEnemyA1 : MonoBehaviour
     public Transform target;
     public float speed = 2000f;
     public float nextWaypointDistance = 3f;
-    public float detectionRadius = 10f;
+    public float detectionRadius = 25f;
 
     public Transform eyeGFX;
 
@@ -18,8 +18,9 @@ public class EyeEnemyA1 : MonoBehaviour
     int currentWaypoint = 0;
     bool reachedEndOfPath = false;
     bool targetDetected = false;
+    [SerializeField] private float avoidRadius = 1.5f;
 
-    
+
     Seeker seeker;
     Rigidbody2D rb;
     void Start()
@@ -60,6 +61,7 @@ public class EyeEnemyA1 : MonoBehaviour
 
     void FixedUpdate()
     {
+        AvoidOtherEnemies();
         if (targetDetected)
             Follow();
     }
@@ -106,5 +108,18 @@ public class EyeEnemyA1 : MonoBehaviour
         // Draw the detection radius in the scene view for debugging
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }    
+    }
+
+    private void AvoidOtherEnemies()
+    {
+        Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, avoidRadius);
+        foreach (var enemy in nearbyEnemies)
+        {
+            if (enemy.gameObject != gameObject && enemy.CompareTag("Enemy"))
+            {
+                Vector2 avoidDirection = (transform.position - enemy.transform.position).normalized;
+                rb.linearVelocity += avoidDirection * speed * Time.deltaTime; // Move slightly away
+            }
+        }
+    }
 }
