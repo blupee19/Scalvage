@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    AudioManager audioManager;
     public Rigidbody2D rb;
     public InputActionAsset playerControls;
     public Camera mainCamera;
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         moveAction = playerControls.FindActionMap(actionMapName).FindAction(move);
         jumpAction = playerControls.FindActionMap(actionMapName).FindAction(jump);
         sprintAction = playerControls.FindActionMap(actionMapName).FindAction(sprint);
@@ -127,6 +129,11 @@ public class PlayerController : MonoBehaviour
         moveDirection = moveAction.ReadValue<Vector2>();
         rb.linearVelocityX = moveDirection.x * moveSpeed;
 
+        //if (moveDirection.x > 0 || moveDirection.x < 0)
+        //{
+        //    audioManager.PlaySFX(audioManager.Walk);
+        //}
+
         if (IsGrounded())
         {
             //animator.SetBool("isJumping", false);
@@ -142,8 +149,8 @@ public class PlayerController : MonoBehaviour
 
         if (coyoteTimeCounter > 0f && JumpInput)
         {
-            rb.linearVelocityY = jumpForce;                    
-            rb.linearVelocityY = jumpForce;                    
+            audioManager.PlaySFX(audioManager.JumpStart);
+            rb.linearVelocityY = jumpForce;                   
             coyoteTimeCounter = 0f;
 
             //animator.SetBool("isJumping", true);
@@ -156,6 +163,7 @@ public class PlayerController : MonoBehaviour
 
         if (SprintInput && Time.time >= lastDashTime + dashCooldown && !isDashing)
         {
+            audioManager.PlaySFX(audioManager.Dash);
             StartDash();
         }
 

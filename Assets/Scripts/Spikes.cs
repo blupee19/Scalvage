@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Spikes : MonoBehaviour
 {
@@ -6,8 +7,6 @@ public class Spikes : MonoBehaviour
     public GameObject player; // Assign this in the inspector
     public Transform respawn; // Assign the respawn point in the inspector
     public Respawn checkpoint;
-
-    // Start is called before the first frame update
     private void Start()
     {
 

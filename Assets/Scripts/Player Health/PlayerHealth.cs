@@ -2,9 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.Rendering;
 
 public class PlayerHealth : MonoBehaviour
 {
+    AudioManager audioManager;
+
     [Header("Health")]
     [SerializeField] private GameObject player;
     [SerializeField] private float startingHealth;
@@ -19,6 +22,11 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer surgeon;
 
     private Respawn respawn;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -52,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > 0)
         {
+            audioManager.PlaySFX(audioManager.playerHurt);
             StartCoroutine(Invulnerability());
             StartCoroutine(Shake(0.2f, 0.3f));
 
@@ -62,6 +71,8 @@ public class PlayerHealth : MonoBehaviour
             { 
                 
                 dead = true;
+                audioManager.PlaySFX(audioManager.playerDeath);
+
                 //RespawnPlayer();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 
