@@ -122,7 +122,8 @@ GameObject:
   - component: {fileID: 2616292230179422642}
   - component: {fileID: 3234768167949395857}
   - component: {fileID: 5638491780843012610}
-  - component: {fileID: 2294290334940756323}
+  - component: {fileID: 3876756717360054275}
+  - component: {fileID: 4613311918047552160}
   m_Layer: 11
   m_Name: HeadEnemy
   m_TagString: Enemy
@@ -207,8 +208,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.005611244, y: 0.044887867}
-  m_Radius: 0.4794265
+  m_Offset: {x: -0.0017443284, y: 0.06}
+  m_Radius: 0.49768215
 --- !u!114 &5638491780843012610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +230,7 @@ MonoBehaviour:
   movingRight: 1
   startingPosition: {x: 0, y: 0}
   rotationSpeed: 200
---- !u!114 &2294290334940756323
+--- !u!114 &3876756717360054275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,9 +239,46 @@ MonoBehaviour:
   m_GameObject: {fileID: 7846953215945157973}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7169a7b5ff7c1a4491918e243ab84a2, type: 3}
+  m_Script: {fileID: 11500000, guid: e12e38c1e9d154948a298b15e6821c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
   canDamage: 0
   damage: 5
+  enemyCollider: {fileID: 4613311918047552160}
+--- !u!58 &4613311918047552160
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846953215945157973}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.06}
+  m_Radius: 0.5

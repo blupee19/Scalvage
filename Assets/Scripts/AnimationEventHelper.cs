@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class AnimationEventHelper : MonoBehaviour
 {
     public AudioManager manager;
+    public WeaponAttack weaponAttack;
     public UnityEvent OnAnimationTriggered, OnAttackPerformed;
 
     public void TriggerEvent()
@@ -19,6 +20,7 @@ public class AnimationEventHelper : MonoBehaviour
     private void Awake()
     {
         manager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+       
     }
     private void CloseAttack()
     {

@@ -21,6 +21,7 @@ public class WeaponAttack : MonoBehaviour
     public InputActionAsset playerControls;
     private InputAction closeAttackAction;
     private InputAction throwAttackAction;
+   
 
     [Header("Variables")]
     [SerializeField] public float attackCooldown;
@@ -84,6 +85,7 @@ public class WeaponAttack : MonoBehaviour
 
         if (closeAttack)
         {
+            throwAttack = false;
             weaponAnimator.SetBool("closeAttack", true);
         }
         else
@@ -93,6 +95,7 @@ public class WeaponAttack : MonoBehaviour
 
         if (throwAttack)
         {
+            closeAttack = false;
             if (throwAttack && cooldownTimer > attackCooldown)
             {
                 ThrowAttack();
@@ -103,6 +106,7 @@ public class WeaponAttack : MonoBehaviour
 
     }
 
+  
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
@@ -132,6 +136,8 @@ public class WeaponAttack : MonoBehaviour
             }
         }
     }
+
+
     
 }
 

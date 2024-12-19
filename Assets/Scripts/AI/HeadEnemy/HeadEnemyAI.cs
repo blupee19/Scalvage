@@ -1,11 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class HeadEnemyAI : AIEnemyBase
 {
     [SerializeField] private float rotationSpeed = 200f; // Rotation speed for the rolling effect
+    private bool isKnockedBack = false;
 
     public override void Patrol()
     {
+        if(isKnockedBack) return;
         // Patrol as usual, but add rotation for rolling effect
         float leftBound = startingPosition.x - patrolDistance;
         float rightBound = startingPosition.x + patrolDistance;
@@ -34,10 +37,12 @@ public class HeadEnemyAI : AIEnemyBase
 
     public override void ChasePlayer()
     {
+        if (isKnockedBack) return;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // Chase the player with rolling effect
         float direction = Mathf.Sign(target.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * 8f, 0f);
+        
 
         // Apply rolling based on movement direction
         if (direction > 0)
@@ -55,6 +60,18 @@ public class HeadEnemyAI : AIEnemyBase
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
         }
+    }
+
+    public void ApplyKnockback()
+    {
+        isKnockedBack = true;
+        StartCoroutine(ResetKnockback());
+    }
+
+    private IEnumerator ResetKnockback()
+    {
+        yield return new WaitForSeconds(0.2f);
+        isKnockedBack = false;
     }
 
 
