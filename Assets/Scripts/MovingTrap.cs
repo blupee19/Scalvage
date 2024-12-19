@@ -42,4 +42,27 @@ public class MovingTrap : MonoBehaviour
             Gizmos.DrawLine(posA.position, posB.position);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 6;
+            collision.gameObject.GetComponent<PlayerController>().jumpForce = 20;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
+            collision.gameObject.GetComponent<PlayerController>().jumpForce = 18;
+
+
+        }
+    }
+
+
 }
