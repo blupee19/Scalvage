@@ -73,20 +73,14 @@ public class PlayerHealth : MonoBehaviour
                 dead = true;
                 audioManager.PlaySFX(audioManager.playerDeath);
                 surgeonAnim.SetBool("isDead", true);
-                StartCoroutine(WaitForDeathAnimation());                            
+                                            
                 
             }
         }
     }
 
-    private IEnumerator WaitForDeathAnimation()
-    {
-        // Replace with the actual length of your death animation
-        float animationDuration = 1.0f;
-
-        yield return new WaitForSeconds(animationDuration);
-
-        // Reload the scene after the animation finishes
+    private void WaitForDeathAnimation()
+    {        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
