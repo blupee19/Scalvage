@@ -9,6 +9,7 @@ public class EnemyBaseHealth : MonoBehaviour
     protected bool isDead = false;
     public bool canDamage = false;
     AudioManager manager;
+    [SerializeField] private ParticleSystem bloodSplatter;
 
     private AIEnemyBase enemy;   
     private Animator animator;
@@ -41,6 +42,7 @@ public class EnemyBaseHealth : MonoBehaviour
 
         currentHealth -= damage;
         manager.PlaySFX(manager.enemyHurt);
+        BloodSplatter();
         if (currentHealth > 0)
         {
             OnHit(sender);
@@ -88,11 +90,18 @@ public class EnemyBaseHealth : MonoBehaviour
 
         if (collision.CompareTag("Projectile"))
         {
-            currentHealth -= 5;
+            currentHealth -= 1;
+            manager.PlaySFX(manager.enemyHurt);
+            BloodSplatter();
             if (currentHealth <= 0) 
                 Die();            
         }       
         
-    }   
+    }
+    
+    private void BloodSplatter()
+    {
+        Instantiate(bloodSplatter, transform.position, Quaternion.identity);
+    }
 
 }
