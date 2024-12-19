@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,12 +8,18 @@ public class EnemyBaseHealth : MonoBehaviour
     protected int currentHealth;
     protected bool isDead = false;
     public bool canDamage = false;
+    AudioManager manager;
 
     private AIEnemyBase enemy;   
     private Animator animator;
     
     [SerializeField] private int damage = 5;
-    
+
+    private void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -33,6 +40,7 @@ public class EnemyBaseHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} takes {damage} damage from {sender.name}.");
 
         currentHealth -= damage;
+        manager.PlaySFX(manager.enemyHurt);
         if (currentHealth > 0)
         {
             OnHit(sender);
