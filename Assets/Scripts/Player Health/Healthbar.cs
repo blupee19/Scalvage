@@ -9,7 +9,7 @@ public class Healthbar : MonoBehaviour
 
     void Start()
     {
-        totalHealthBar.fillAmount = playerHealth.currentHealth/3;
+        currentHealthBar.fillAmount = playerHealth.currentHealth/3;
     }
 
     // Update is called once per frame

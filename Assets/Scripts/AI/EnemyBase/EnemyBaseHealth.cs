@@ -1,3 +1,4 @@
+using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,12 +8,19 @@ public class EnemyBaseHealth : MonoBehaviour
     protected int currentHealth;
     protected bool isDead = false;
     public bool canDamage = false;
+    AudioManager manager;
+    [SerializeField] private ParticleSystem bloodSplatter;
 
     private AIEnemyBase enemy;   
     private Animator animator;
     
     [SerializeField] private int damage = 5;
-    
+
+    private void Awake()
+    {
+        manager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -33,6 +41,8 @@ public class EnemyBaseHealth : MonoBehaviour
         Debug.Log($"{gameObject.name} takes {damage} damage from {sender.name}.");
 
         currentHealth -= damage;
+        manager.PlaySFX(manager.enemyHurt);
+        BloodSplatter();
         if (currentHealth > 0)
         {
             OnHit(sender);
@@ -80,11 +90,18 @@ public class EnemyBaseHealth : MonoBehaviour
 
         if (collision.CompareTag("Projectile"))
         {
-            currentHealth -= 5;
+            currentHealth -= 1;
+            manager.PlaySFX(manager.enemyHurt);
+            BloodSplatter();
             if (currentHealth <= 0) 
                 Die();            
         }       
         
-    }   
+    }
+    
+    private void BloodSplatter()
+    {
+        Instantiate(bloodSplatter, transform.position, Quaternion.identity);
+    }
 
 }
