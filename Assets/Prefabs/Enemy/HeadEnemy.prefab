@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   canDamage: 0
+  bloodSplatter: {fileID: 3667528836946115944, guid: 0d37a4cc0ecb3c24486cf2d8ae81bd3f, type: 3}
   damage: 5
   enemyCollider: {fileID: 4613311918047552160}
 --- !u!58 &4613311918047552160

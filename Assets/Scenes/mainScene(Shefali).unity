@@ -15192,6 +15192,10 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 806668622}
+    - target: {fileID: 3876756717360054275, guid: c1bb61b1770d45740958a11527fc75a2, type: 3}
+      propertyPath: bloodSplatter
+      value: 
+      objectReference: {fileID: 3667528836946115944, guid: 0d37a4cc0ecb3c24486cf2d8ae81bd3f, type: 3}
     - target: {fileID: 5638491780843012610, guid: c1bb61b1770d45740958a11527fc75a2, type: 3}
       propertyPath: target
       value: 
