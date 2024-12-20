@@ -4,6 +4,7 @@ public class EyeEnemyHeatlth : EnemyBaseHealth
 {
     protected static GameObject lastHitSender;
     protected static Collider2D enemyCollider;
+    [SerializeField] private float knockbackForce = 4f;
    
     public override void OnHit(GameObject sender)
     {
@@ -16,7 +17,7 @@ public class EyeEnemyHeatlth : EnemyBaseHealth
         if (rb != null)
         {
             Vector2 knockbackDirection = (transform.position - sender.transform.position).normalized;
-            rb.AddForce(knockbackDirection * 4f, ForceMode2D.Impulse);
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
         }
     }   
 }

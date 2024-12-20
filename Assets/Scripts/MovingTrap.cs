@@ -5,6 +5,8 @@ public class MovingTrap : MonoBehaviour
     public Transform posA, posB;
     public float speed = 7f; // Set a default speed
     private Vector2 targetPos;
+    [SerializeField] private float newGravityScale = 6;
+    [SerializeField] private float newJumpForce = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +49,10 @@ public class MovingTrap : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 6;
-            collision.gameObject.GetComponent<PlayerController>().jumpForce = 20;
+            collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = newGravityScale;
+            collision.gameObject.GetComponent<PlayerController>().jumpForce = newJumpForce;
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
 
         }
     }
@@ -59,7 +63,6 @@ public class MovingTrap : MonoBehaviour
         {
             collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
             collision.gameObject.GetComponent<PlayerController>().jumpForce = 18;
-
 
         }
     }
