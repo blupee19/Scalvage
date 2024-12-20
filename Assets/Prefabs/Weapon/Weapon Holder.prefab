@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4311293033891471414}
   - component: {fileID: 1382374887921174141}
-  - component: {fileID: 738502097015699349}
   m_Layer: 10
   m_Name: Weapon Holder
   m_TagString: Untagged
@@ -59,19 +58,6 @@ MonoBehaviour:
   cooldownTimer: Infinity
   offset: 0
   radius: 1.59
---- !u!114 &738502097015699349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394703235455515894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcbf9a1fc25e2f44f8ff724f06c9d7e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!1001 &1464701334346880372
 PrefabInstance:
   m_ObjectHideFlags: 0

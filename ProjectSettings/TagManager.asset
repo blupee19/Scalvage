@@ -9,6 +9,7 @@ TagManager:
   - Projectile
   - Ground
   - Audio
+  - Trap
   layers:
   - Default
   - TransparentFX
