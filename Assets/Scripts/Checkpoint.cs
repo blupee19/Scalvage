@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    AudioManager manager;
+    [SerializeField] private PlayerHealth health;
     private Respawn respawn;
-    private BoxCollider2D boxCollider;
+    public BoxCollider2D boxCollider;
 
     void Awake()
     {
+        manager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         boxCollider = GetComponent<BoxCollider2D>();
         respawn = GameObject.FindGameObjectWithTag("Respawn").GetComponent<Respawn>();       
     }
@@ -17,6 +20,10 @@ public class Checkpoint : MonoBehaviour
         {
             respawn.respawnPoint = this.gameObject;
             boxCollider.enabled = false;
+            manager.PlaySFX(manager.checkpont);
+            health.currentHealth = 3f;
+
         }
+
     }
 }

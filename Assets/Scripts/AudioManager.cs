@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerHurt;
     public AudioClip playerDeath;
     public AudioClip enemyHurt;
+    public AudioClip trapTrigger;
+    public AudioClip Level2BGM;
+    public AudioClip Level1BGM;
+    public AudioClip checkpont;
 
     private void Start()
     {

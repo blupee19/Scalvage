@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class TrapTrigger : MonoBehaviour
 {
+    AudioManager manager;
+    [SerializeField] private BoxCollider2D trigger;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         gameObject.GetComponent<MovingTrap>().enabled = false;
+        manager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
     // Update is called once per frame
@@ -15,7 +19,9 @@ public class TrapTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponent<MovingTrap>().enabled = true;
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            trigger.enabled = false;
+            manager.PlaySFX(manager.trapTrigger);
+            Debug.Log("Trap Triggered");
 
         }
     }

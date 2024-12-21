@@ -7,8 +7,12 @@ public class MovingTrap : MonoBehaviour
     private Vector2 targetPos;
     [SerializeField] private float newGravityScale = 6;
     [SerializeField] private float newJumpForce = 20;
+    public PlayerController controller;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        controller = GetComponent<PlayerController>();
+    }
     void Start()
     {
         if (posA == null || posB == null)
@@ -62,7 +66,7 @@ public class MovingTrap : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody2D>().gravityScale = 3;
-            collision.gameObject.GetComponent<PlayerController>().jumpForce = 18;
+            collision.gameObject.GetComponent<PlayerController>().jumpForce = controller.jumpForce;
 
         }
     }

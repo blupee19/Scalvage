@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     private Animator surgeonAnim;
     public bool dead;
-    public float currentHealth { get; private set; }
+    public float currentHealth { get;  set; }
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration;
