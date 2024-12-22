@@ -25,5 +25,10 @@ public class BGMStart : MonoBehaviour
             manager.PlaySFX(manager.Level2BGM);
             trigger.enabled = false;
         }
+        if (collision.tag == "Player" && SceneManager.GetActiveScene().name == "MainLevel3")
+        {
+            manager.PlaySFX(manager.Level3BGM);
+            trigger.enabled = false;
+        }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelFinish : MonoBehaviour
 {
+
+    public GameObject eyeEnemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -16,8 +18,14 @@ public class LevelFinish : MonoBehaviour
 
     private IEnumerator WaitForLevelChange()
     {
-        yield return new WaitForSeconds(0.1f);
-        SceneManager.LoadSceneAsync(2);
-        
+        yield return new WaitForSeconds(2f);
+        if (SceneManager.GetActiveScene().name == "MainLevel1") SceneManager.LoadSceneAsync(3);
+        if (SceneManager.GetActiveScene().name == "MainLevel2") SceneManager.LoadSceneAsync(5);
+
+    }
+
+    private void Update()
+    {
+        if (SceneManager.GetActiveScene().name == "MainLevel3" && eyeEnemy == null) SceneManager.LoadSceneAsync(7);
     }
 }

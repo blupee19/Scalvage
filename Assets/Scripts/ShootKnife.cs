@@ -26,7 +26,7 @@ public class ShootKnife : MonoBehaviour
         Vector3 direction = (mousePos - transform.position).normalized;
 
         // Apply force to the knife in the calculated direction
-        rb.linearVelocity = direction * force;
+        rb.linearVelocity = direction.normalized * force;
 
         // Rotate the knife to face the direction of movement
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -35,12 +35,12 @@ public class ShootKnife : MonoBehaviour
 
     void Update()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 1f);
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         { 
             Destroy(gameObject);
         }

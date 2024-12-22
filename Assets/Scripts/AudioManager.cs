@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,12 +23,23 @@ public class AudioManager : MonoBehaviour
     public AudioClip trapTrigger;
     public AudioClip Level2BGM;
     public AudioClip Level1BGM;
+    public AudioClip Level3BGM;
     public AudioClip checkpont;
+    public AudioClip mouseClick;
 
     private void Start()
     {
-        musicSource.clip = BGAmbiance;
-        musicSource.Play();
+        if (SceneManager.GetActiveScene().name == "MainLevel1" || SceneManager.GetActiveScene().name == "MainLevel2" || SceneManager.GetActiveScene().name == "MainLevel3" || SceneManager.GetActiveScene().name == "MainMenu") 
+        {
+            musicSource.clip = BGAmbiance;
+            musicSource.Play();
+        }
+        else if (SceneManager.GetActiveScene().name == "UI1" || SceneManager.GetActiveScene().name == "UI2" || SceneManager.GetActiveScene().name == "UI3")
+        {
+            musicSource.clip = Level3BGM;
+            musicSource.Play();
+        }
+
     }
 
     public void PlaySFX(AudioClip clip)

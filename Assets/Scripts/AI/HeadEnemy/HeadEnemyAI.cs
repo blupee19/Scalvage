@@ -41,7 +41,7 @@ public class HeadEnemyAI : AIEnemyBase
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         // Chase the player with rolling effect
         float direction = Mathf.Sign(target.position.x - transform.position.x);
-        rb.linearVelocity = new Vector2(direction * 13f, 0f);
+        rb.linearVelocity = new Vector2(direction * 9f, 0f);
         
 
         // Apply rolling based on movement direction
