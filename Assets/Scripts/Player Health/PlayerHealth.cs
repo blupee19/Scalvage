@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem.Utilities;
-using UnityEngine.Rendering;
 
 public class PlayerHealth : MonoBehaviour
 {

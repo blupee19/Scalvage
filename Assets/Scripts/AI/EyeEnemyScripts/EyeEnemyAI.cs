@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-using System.IO;
-using System.Security.Cryptography;
 
 public class EyeEnemyA1 : MonoBehaviour
 {

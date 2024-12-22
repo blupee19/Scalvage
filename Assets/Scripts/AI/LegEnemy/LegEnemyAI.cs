@@ -1,9 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Pathfinding;
-using System.IO;
-using TMPro.Examples;
 
 public class LegEnemyAI : AIEnemyBase
 {

@@ -1,10 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Pathfinding;
-using System.IO;
-using JetBrains.Annotations;
-using System.Linq.Expressions;
 
 public class AIEnemyBase : MonoBehaviour
 {
