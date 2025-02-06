@@ -17,7 +17,7 @@
 
 ## 🚀 Installation & Running
 To play Scalvage:
-1. Extract the downloaded files.
+1. Download the files from https://blupee19.itch.io/scalvage
 2. Run `Scalvage.exe` (Windows) on your PC and play!
 
 ## 🛠️ Tech Stack
