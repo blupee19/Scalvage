@@ -1,4 +1,4 @@
-Scalvage - A 2D Side-Scroller One-Run Game
+# Scalvage - A 2D Side-Scroller One-Run Game
 
 🕹️ About Scalvage
 
