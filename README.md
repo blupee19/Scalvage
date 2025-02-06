@@ -17,7 +17,6 @@
 
 ## 🚀 Installation & Running
 To play Scalvage:
-1. Download the latest build from the [Releases](https://github.com/yourusername/scalvage/releases) section.
 2. Extract the downloaded files.
 3. Run `Scalvage.exe` (Windows) or the appropriate executable for your platform.
 
