@@ -17,8 +17,8 @@
 
 ## 🚀 Installation & Running
 To play Scalvage:
-2. Extract the downloaded files.
-3. Run `Scalvage.exe` (Windows) or the appropriate executable for your platform.
+1. Extract the downloaded files.
+2. Run `Scalvage.exe` (Windows) on your PC and play!
 
 ## 🛠️ Tech Stack
 - **Game Engine:** Unity
