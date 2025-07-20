@@ -1,4 +1,4 @@
-repository "ProjectOne@blupee19@cloud"
+repository "Cloud Repositories/ProjectOne@13469177475520@cloud"
   path "/"
     br "/main"
     co "/main"

@@ -62986,6 +62986,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8423047918794040725, guid: 8a0455fa1a817d04e80b2e06f9d3d75b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423047918794040725, guid: 8a0455fa1a817d04e80b2e06f9d3d75b, type: 3}
       propertyPath: m_PreviewTimeScale
       value: 1
       objectReference: {fileID: 0}
